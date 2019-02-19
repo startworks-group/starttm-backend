@@ -21,7 +21,7 @@ Route.get('/', () => {
 })
 
 Route.resource('clubs', 'ClubController')
-  .except(['create'])
+  .except(['create', 'edit'])
 
 Route.resource('federations', 'FederationController')
-  .except(['create'])
+  .except(['create', 'edit'])

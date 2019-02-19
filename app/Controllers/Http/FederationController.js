@@ -44,18 +44,6 @@ class FederationController {
   }
 
   /**
-   * Render a form to update an existing federation.
-   * GET federations/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
    * Update federation details.
    * PUT or PATCH federations/:id
    *
