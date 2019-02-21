@@ -8,6 +8,27 @@ class ClubSchema extends Schema {
     this.create('clubs', (table) => {
       table.increments();
       table.string('name').notNullable();
+      table
+          .integer('manager_id')
+          .notNullable()
+          .unique()
+          .unsigned()
+          .references('id')
+          .inTable('users');
+      table
+          .integer('eventManager_id')
+          .notNullable()
+          .unique()
+          .unsigned()
+          .references('id')
+          .inTable('users');
+      table
+          .integer('federation_id')
+          .notNullable()
+          .unique()
+          .unsigned()
+          .references('id')
+          .inTable('federations');
       table.timestamps();
     });
   }
