@@ -17,16 +17,17 @@ class AddressSchema extends Schema {
       table.string('complement').notNullable();
       table.string('city').notNullable();
       table.string('state').notNullable();
+      table.timestamps();
+
       table.unique([
         'street',
         'number',
-        'neightborhood',
+        'neighborhood',
         'cep',
         'complement',
         'city',
         'state',
       ]);
-      table.timestamps();
     });
   }
 
