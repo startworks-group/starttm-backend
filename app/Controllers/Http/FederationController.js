@@ -5,12 +5,12 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
- * Resourceful controller for interacting with clubs
+ * Resourceful controller for interacting with federations
  */
-class ClubController {
+class FederationController {
   /**
-   * Show a list of all clubs.
-   * GET clubs
+   * Show a list of all federations.
+   * GET federations
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -21,8 +21,8 @@ class ClubController {
   }
 
   /**
-   * Create/save a new club.
-   * POST clubs
+   * Create/save a new federation.
+   * POST federations
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -32,8 +32,8 @@ class ClubController {
   }
 
   /**
-   * Display a single club.
-   * GET clubs/:id
+   * Display a single federation.
+   * GET federations/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -44,8 +44,8 @@ class ClubController {
   }
 
   /**
-   * Update club details.
-   * PUT or PATCH clubs/:id
+   * Update federation details.
+   * PUT or PATCH federations/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -55,8 +55,8 @@ class ClubController {
   }
 
   /**
-   * Delete a club with id.
-   * DELETE clubs/:id
+   * Delete a federation with id.
+   * DELETE federations/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -66,4 +66,4 @@ class ClubController {
   }
 }
 
-module.exports = ClubController
+module.exports = FederationController

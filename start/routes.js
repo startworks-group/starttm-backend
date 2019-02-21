@@ -19,3 +19,9 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.resource('clubs', 'ClubController')
+  .except(['create', 'edit'])
+
+Route.resource('federations', 'FederationController')
+  .except(['create', 'edit'])
