@@ -10,9 +10,10 @@ Route.get('/', () => {
 Route.post('/subscriptions', 'Auth/SubscriptionController.store');
 
 // Users
-Route.post('/users', 'UserController.store');
-Route.get('/users', 'UserController.index');
-Route.get('/users/:id', 'UserController.show');
+Route.resource('users', 'UserController').apiOnly();
 
 // Federations
 Route.resource('federations', 'FederationController').apiOnly();
+
+// Clubs
+Route.resource('clubs', 'ClubController').apiOnly();

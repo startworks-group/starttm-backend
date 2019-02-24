@@ -1,69 +1,42 @@
-'use strict'
+'use strict';
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+const Club = use('App/Models/Club');
+const columns = ['name', 'manager_id', 'eventManager_id', 'federation_id'];
 
-/**
- * Resourceful controller for interacting with clubs
- */
 class ClubController {
-  /**
-   * Show a list of all clubs.
-   * GET clubs
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index({request}) {
+    const clubs = await Club.all();
+    return clubs;
   }
 
-  /**
-   * Create/save a new club.
-   * POST clubs
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async store({request}) {
+    const data = request.only(columns);
+    const club = await Club.create(data);
+
+    return club;
   }
 
-  /**
-   * Display a single club.
-   * GET clubs/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
+  async show({params}) {
+    const club = await Club.findOrFail(params.id);
+    return club;
   }
 
-  /**
-   * Update club details.
-   * PUT or PATCH clubs/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
+  async update({params, request}) {
+    const data = request.only(columns);
+    const club = await Club.findOrFail(params.id);
+
+    club.merge(data);
+    await club.save();
+
+    return club;
   }
 
-  /**
-   * Delete a club with id.
-   * DELETE clubs/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+  async destroy({params}) {
+    const club = await Club.findOrFail(params.id);
+    const resp = await club.delete();
+
+    return resp;
   }
 }
 
-module.exports = ClubController
+module.exports = ClubController;
