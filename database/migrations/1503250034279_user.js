@@ -16,16 +16,6 @@ class UserSchema extends Schema {
           .notNullable()
           .unique();
       table.string('password', 60).notNullable();
-      table.string('name');
-      table.enu('sex', ['MALE', 'FEMALE']);
-      table.date('birth');
-      table.string('cpf', 11).unique();
-      table.string('rg').unique();
-      table
-          .integer('address_id')
-          .unsigned()
-          .references('id')
-          .inTable('addresses');
       table.timestamps();
     });
   }
