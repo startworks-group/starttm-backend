@@ -6,8 +6,11 @@ Route.get('/', () => {
   return {greeting: 'Hello world in JSON'};
 });
 
-// Subscription
+// Subscriptions
 Route.post('/subscriptions', 'Auth/SubscriptionController.store');
 
-// User
+// Users
 Route.post('/users', 'UserController.store');
+
+// People
+Route.resource('/people', 'PersonController').apiOnly();
