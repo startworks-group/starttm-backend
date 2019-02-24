@@ -12,5 +12,5 @@ Route.post('/subscriptions', 'Auth/SubscriptionController.store');
 // Users
 Route.post('/users', 'UserController.store');
 
-// People
-Route.resource('/people', 'PersonController').apiOnly();
+// Federations
+Route.resource('federations', 'FederationController').apiOnly();

@@ -1,86 +1,42 @@
 'use strict';
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+const Federation = use('App/Models/Federation');
+const columns = ['name', 'initials', 'uf'];
 
-/**
- * Resourceful controller for interacting with federations
- */
 class FederationController {
-  /**
-   * Show a list of all federations.
-   * GET federations
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index({request, response, view}) {}
+  async index({request}) {
+    const federations = await Federation.all();
+    return federations;
+  }
 
-  /**
-   * Render a form to be used for creating a new federation.
-   * GET federations/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({request, response, view}) {}
+  async store({request}) {
+    const data = request.only(columns);
+    const federation = await Federation.create(data);
 
-  /**
-   * Create/save a new federation.
-   * POST federations
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store({request, response}) {}
+    return federation;
+  }
 
-  /**
-   * Display a single federation.
-   * GET federations/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show({params, request, response, view}) {}
+  async show({params}) {
+    const federation = await Federation.findOrFail(params.id);
+    return federation;
+  }
 
-  /**
-   * Render a form to update an existing federation.
-   * GET federations/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({params, request, response, view}) {}
+  async update({params, request}) {
+    const data = request.only(columns);
+    const federation = await Federation.findOrFail(params.id);
 
-  /**
-   * Update federation details.
-   * PUT or PATCH federations/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update({params, request, response}) {}
+    federation.merge(data);
+    await federation.save();
 
-  /**
-   * Delete a federation with id.
-   * DELETE federations/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy({params, request, response}) {}
+    return federation;
+  }
+
+  async destroy({params}) {
+    const federation = await Federation.findOrFail(params.id);
+    const resp = await federation.delete();
+
+    return resp;
+  }
 }
 
 module.exports = FederationController;
