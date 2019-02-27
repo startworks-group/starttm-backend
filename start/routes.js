@@ -9,6 +9,9 @@ Route.get('/', () => {
 // Subscriptions
 Route.post('/subscriptions', 'Auth/SubscriptionController.store');
 
+// Confirmation
+Route.get('/confirmations/:token', 'Auth/ConfirmationController.show');
+
 // Users
 Route.resource('users', 'UserController').apiOnly();
 
