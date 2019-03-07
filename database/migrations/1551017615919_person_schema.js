@@ -10,8 +10,8 @@ class PersonSchema extends Schema {
       table
           .integer('user_id')
           .unsigned()
-          .references('id')
-          .inTable('users')
+          .references('users.id')
+          .notNullable()
           .onUpdate('CASCADE')
           .onDelete('CASCADE');
       table.string('name').notNullable();
@@ -29,8 +29,9 @@ class PersonSchema extends Schema {
           .integer('address_id')
           .notNullable()
           .unsigned()
-          .references('id')
-          .inTable('addresses');
+          .references('addresses.id')
+          .onUpdate('CASCADE')
+          .onDelete('CASCADE');
       table.timestamps();
     });
   }

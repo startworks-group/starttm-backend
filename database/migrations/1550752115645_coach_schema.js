@@ -12,14 +12,12 @@ class CoachSchema extends Schema {
           .unsigned()
           .unique()
           .notNullable()
-          .references('id')
-          .inTable('users');
+          .references('users.id');
       table
           .integer('club_id')
           .unsigned()
           .notNullable()
-          .references('id')
-          .inTable('clubs');
+          .references('clubs.id');
       table.timestamps();
 
       table.unique(['user_id', 'club_id']);

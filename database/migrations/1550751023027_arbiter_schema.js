@@ -18,6 +18,12 @@ class ArbiterSchema extends Schema {
           .integer('participations')
           .unsigned()
           .notNullable();
+      table
+          .integer('address_id')
+          .notNullable()
+          .unsigned()
+          .references('id')
+          .inTable('addresses');
       table.timestamps();
     });
   }

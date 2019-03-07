@@ -12,8 +12,7 @@ class AthleteSchema extends Schema {
           .unsigned()
           .notNullable()
           .unique()
-          .references('id')
-          .inTable('users');
+          .references('users.id');
       table
           .integer('rating')
           .unsigned()
@@ -22,8 +21,7 @@ class AthleteSchema extends Schema {
           .integer('federation_id')
           .unsigned()
           .notNullable()
-          .references('federations')
-          .inTable('Federation');
+          .references('federations.id');
       table.timestamps();
     });
   }

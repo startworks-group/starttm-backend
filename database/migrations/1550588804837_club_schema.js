@@ -13,22 +13,19 @@ class ClubSchema extends Schema {
           .notNullable()
           .unique()
           .unsigned()
-          .references('id')
-          .inTable('users');
+          .references('users.id');
       table
           .integer('eventManager_id')
           .notNullable()
           .unique()
           .unsigned()
-          .references('id')
-          .inTable('users');
+          .references('users.id');
       table
           .integer('federation_id')
           .notNullable()
           .unique()
           .unsigned()
-          .references('id')
-          .inTable('federations');
+          .references('federations.id');
       table.timestamps();
     });
   }
