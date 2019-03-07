@@ -3,7 +3,7 @@
 const Route = use('Route');
 
 Route.get('/', () => {
-  return {greeting: 'Hello world in JSON'};
+  return {starttm: 'Bem vindo ao sistema Start TM'};
 });
 
 // Subscriptions
