@@ -14,7 +14,7 @@ class SubscriptionSchema extends Schema {
       table.string('email', 254).notNullable();
       table.string('password', 60).notNullable();
       table
-        .string('token', 16)
+        .string('token', 60)
         .notNullable()
         .unique();
       table.timestamps();
