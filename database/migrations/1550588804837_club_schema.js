@@ -9,23 +9,23 @@ class ClubSchema extends Schema {
       table.increments();
       table.string('name').notNullable();
       table
-          .integer('manager_id')
-          .notNullable()
-          .unique()
-          .unsigned()
-          .references('users.id');
+        .integer('manager_id')
+        .notNullable()
+        .unique()
+        .unsigned()
+        .references('users.id');
       table
-          .integer('eventManager_id')
-          .notNullable()
-          .unique()
-          .unsigned()
-          .references('users.id');
+        .integer('eventManager_id')
+        .notNullable()
+        .unique()
+        .unsigned()
+        .references('users.id');
       table
-          .integer('federation_id')
-          .notNullable()
-          .unique()
-          .unsigned()
-          .references('federations.id');
+        .integer('federation_id')
+        .notNullable()
+        .unique()
+        .unsigned()
+        .references('federations.id');
       table.timestamps();
     });
   }

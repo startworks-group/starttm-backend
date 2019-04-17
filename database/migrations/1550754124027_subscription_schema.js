@@ -8,17 +8,15 @@ class SubscriptionSchema extends Schema {
     this.create('subscriptions', (table) => {
       table.increments();
       table
-          .string('username', 80)
-          .notNullable()
-          .unique();
-      table
-          .string('email', 254)
-          .notNullable()
+        .string('username', 80)
+        .notNullable()
+        .unique();
+      table.string('email', 254).notNullable();
       table.string('password', 60).notNullable();
       table
-          .string('token', 16)
-          .notNullable()
-          .unique();
+        .string('token', 16)
+        .notNullable()
+        .unique();
       table.timestamps();
     });
   }

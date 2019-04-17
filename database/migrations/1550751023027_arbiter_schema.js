@@ -8,22 +8,22 @@ class ArbiterSchema extends Schema {
     this.create('arbiters', (table) => {
       table.increments();
       table
-          .integer('user_id')
-          .unsigned()
-          .unique()
-          .notNullable()
-          .references('id')
-          .inTable('users');
+        .integer('user_id')
+        .unsigned()
+        .unique()
+        .notNullable()
+        .references('id')
+        .inTable('users');
       table
-          .integer('participations')
-          .unsigned()
-          .notNullable();
+        .integer('participations')
+        .unsigned()
+        .notNullable();
       table
-          .integer('address_id')
-          .notNullable()
-          .unsigned()
-          .references('id')
-          .inTable('addresses');
+        .integer('address_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('addresses');
       table.timestamps();
     });
   }

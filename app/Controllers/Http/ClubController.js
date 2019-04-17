@@ -4,24 +4,24 @@ const Club = use('App/Models/Club');
 const columns = ['name', 'manager_id', 'eventManager_id', 'federation_id'];
 
 class ClubController {
-  async index({request}) {
+  async index({ request }) {
     const clubs = await Club.all();
     return clubs;
   }
 
-  async store({request}) {
+  async store({ request }) {
     const data = request.only(columns);
     const club = await Club.create(data);
 
     return club;
   }
 
-  async show({params}) {
+  async show({ params }) {
     const club = await Club.findOrFail(params.id);
     return club;
   }
 
-  async update({params, request}) {
+  async update({ params, request }) {
     const data = request.only(columns);
     const club = await Club.findOrFail(params.id);
 
@@ -31,7 +31,7 @@ class ClubController {
     return club;
   }
 
-  async destroy({params}) {
+  async destroy({ params }) {
     const club = await Club.findOrFail(params.id);
     const resp = await club.delete();
 
