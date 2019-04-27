@@ -26,3 +26,35 @@ Inicie o servidor e acesse via http://127.0.0.1:3333 🤞🙏⏱👍
 ```
 $ adonis serve   
 ```
+
+
+### Colaboradores
+<hr>
+<table>
+  <tr>
+    <td align="center">
+      <a href="http://github.com/johnvictor2017">
+        <img src="https://avatars0.githubusercontent.com/u/30505330?s=400&v=4" width="100px;" alt="John Victor"/>
+        <br />
+        <sub><b>John Victor</b></sub>
+      </a><br />
+      <a href="https://github.com/startworks-group/starttm-backend/commits?author=johnvictor2017" title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="http://github.com/marlonsecundo">
+        <img src="https://avatars0.githubusercontent.com/u/9901761?s=400&v=4" width="100px;" alt="Marlon Secundo"/>
+        <br />
+        <sub><b>Marlon Secundo</b></sub>
+      </a><br />
+      <a href="https://github.com/startworks-group/starttm-backend/commits?author=marlonsecundo" title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="http://github.com/guimcarneiro">
+        <img src="https://avatars3.githubusercontent.com/u/32914505?s=400&v=4" width="100px;" alt="Guilherme Carneiro"/>
+        <br />
+        <sub><b>Guilherme Carneiro</b></sub>
+      </a><br />
+      <a href="https://github.com/startworks-group/starttm-backend/commits?author=guimcarneiro" title="Code">💻</a>
+    </td>
+  </tr>
+</table>
