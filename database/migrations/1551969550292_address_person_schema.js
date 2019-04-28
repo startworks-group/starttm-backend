@@ -10,15 +10,18 @@ class AddressPersonSchema extends Schema {
         .notNullable()
         .unsigned()
         .unique()
-        .references('id')
-        .inTable('addresses');
+        .references('address.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table
         .integer('person_id')
         .notNullable()
         .unsigned()
         .unique()
-        .references('id')
-        .inTable('people');
+        .references('people.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.unique(['address_id', 'person_id']);
       table.timestamps();
     });
   }

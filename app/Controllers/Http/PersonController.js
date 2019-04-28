@@ -1,5 +1,3 @@
-'use strict';
-
 const Person = use('App/Models/Person');
 const Database = use('Database');
 const columns = ['name', 'sex', 'birth', 'cpf', 'rg', 'address_id'];
@@ -29,9 +27,7 @@ class PersonController {
   }
 
   async update({ params, request }) {
-    const updateColumns = columns.filter(
-      (item) => !['address_id'].includes(item)
-    );
+    const updateColumns = columns.filter(item => !['address_id'].includes(item));
 
     const data = request.only(updateColumns);
     const person = await Person.findOrFail(params.id);

@@ -1,5 +1,3 @@
-'use strict';
-
 const User = use('App/Models/User');
 const Subscription = use('App/Models/Auth/Subscription');
 

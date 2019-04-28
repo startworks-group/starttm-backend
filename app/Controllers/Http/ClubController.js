@@ -1,5 +1,3 @@
-'use strict';
-
 const Club = use('App/Models/Club');
 const columns = ['name', 'manager_id', 'eventManager_id', 'federation_id'];
 

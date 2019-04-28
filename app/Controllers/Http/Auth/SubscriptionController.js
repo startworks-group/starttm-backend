@@ -1,5 +1,3 @@
-'use strict';
-
 const Hash = use('Hash');
 const Mail = use('Mail');
 
@@ -14,20 +12,16 @@ class SubscriptionController {
 
     await Subscription.create({ ...data, token });
 
-    await Mail.send(
-      'emails.subscription',
-      { ...data, redirectUrl },
-      (message) => {
-        message
-          .to(data.email)
-          .from('starttm@account.com')
-          .subject('Confirm Email Address');
-      }
-    );
+    await Mail.send('emails.subscription', { ...data, redirectUrl }, (message) => {
+      message
+        .to(data.email)
+        .from('starttm@account.com')
+        .subject('Confirm Email Address');
+    });
 
     response.status(202).send({
       message: 'Confirmation email has been send',
-      link: `${redirectUrl}/${token}`
+      link: `${redirectUrl}/${token}`,
     });
   }
 }

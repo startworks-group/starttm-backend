@@ -10,13 +10,18 @@ class AddressClubSchema extends Schema {
         .notNullable()
         .unsigned()
         .unique()
-        .references('clubs.id');
+        .references('clubs.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table
         .integer('address_id')
         .notNullable()
         .unsigned()
         .unique()
-        .references('addresses.id');
+        .references('addresses.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.unique(['address_id', 'person_id']);
       table.timestamps();
     });
   }
