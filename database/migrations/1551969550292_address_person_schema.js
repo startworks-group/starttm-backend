@@ -10,7 +10,7 @@ class AddressPersonSchema extends Schema {
         .notNullable()
         .unsigned()
         .unique()
-        .references('address.id')
+        .references('addresses.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table

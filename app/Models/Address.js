@@ -3,7 +3,7 @@ const Model = use('Model');
 
 class Address extends Model {
   person() {
-    return this.belongsTo('App/Models/Person');
+    return this.belongsToMany('App/Models/Person');
   }
 }
 

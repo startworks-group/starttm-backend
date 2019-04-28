@@ -23,13 +23,6 @@ class PersonSchema extends Schema {
         .string('rg')
         .notNullable()
         .unique();
-      table
-        .integer('address_id')
-        .notNullable()
-        .unsigned()
-        .references('addresses.id')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
       table.timestamps();
     });
   }

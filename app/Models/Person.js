@@ -2,6 +2,14 @@
 const Model = use('Model');
 
 class Person extends Model {
+  static boot() {
+    super.boot();
+  }
+
+  static columns() {
+    return ['name', 'sex', 'birth', 'cpf', 'rg'];
+  }
+
   user() {
     return this.belongsTo('App/Models/User');
   }

@@ -8,7 +8,7 @@ tmp
 .env
 
 # The development sqlite file
-database/development.sqlite
+database/starttm.sqlite
 
 # Vscode debug
 .vscode

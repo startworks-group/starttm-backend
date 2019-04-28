@@ -8,6 +8,9 @@ Route.post('/subscriptions', 'Auth/SubscriptionController.store');
 // Users
 Route.resource('users', 'UserController').apiOnly();
 
+// People
+Route.resource('users.people', 'PersonController').apiOnly();
+
 // Federations
 Route.resource('federations', 'FederationController').apiOnly();
 
