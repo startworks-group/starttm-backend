@@ -21,7 +21,7 @@ class AddressClubSchema extends Schema {
         .references('addresses.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      table.unique(['address_id', 'person_id']);
+      table.unique(['address_id', 'club_id']);
       table.timestamps();
     });
   }
