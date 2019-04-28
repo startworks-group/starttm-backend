@@ -10,9 +10,9 @@ class FederationSchema extends Schema {
       table.increments();
       table.enu('uf', ufs).notNullable();
       table
-          .string('name')
-          .notNullable()
-          .unique();
+        .string('name')
+        .notNullable()
+        .unique();
       table.string('initials').notNullable();
       table.timestamps();
     });

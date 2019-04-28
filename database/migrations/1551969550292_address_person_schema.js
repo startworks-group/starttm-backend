@@ -8,19 +8,19 @@ class AddressPersonSchema extends Schema {
     this.create('address_people', (table) => {
       table.increments();
       table
-          .integer('address_id')
-          .notNullable()
-          .unsigned()
-          .unique()
-          .references('id')
-          .inTable('addresses');
+        .integer('address_id')
+        .notNullable()
+        .unsigned()
+        .unique()
+        .references('id')
+        .inTable('addresses');
       table
-          .integer('person_id')
-          .notNullable()
-          .unsigned()
-          .unique()
-          .references('id')
-          .inTable('people');
+        .integer('person_id')
+        .notNullable()
+        .unsigned()
+        .unique()
+        .references('id')
+        .inTable('people');
       table.timestamps();
     });
   }

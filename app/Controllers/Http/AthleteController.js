@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -17,8 +17,7 @@ class AthleteController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-  }
+  async index({ request, response, view }) {}
 
   /**
    * Render a form to be used for creating a new athlete.
@@ -29,8 +28,7 @@ class AthleteController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-  }
+  async create({ request, response, view }) {}
 
   /**
    * Create/save a new athlete.
@@ -40,8 +38,7 @@ class AthleteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
-  }
+  async store({ request, response }) {}
 
   /**
    * Display a single athlete.
@@ -52,8 +49,7 @@ class AthleteController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing athlete.
@@ -64,8 +60,7 @@ class AthleteController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update athlete details.
@@ -75,8 +70,7 @@ class AthleteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 
   /**
    * Delete a athlete with id.
@@ -86,8 +80,7 @@ class AthleteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
-  }
+  async destroy({ params, request, response }) {}
 }
 
-module.exports = AthleteController
+module.exports = AthleteController;

@@ -8,17 +8,17 @@ class AddressClubSchema extends Schema {
     this.create('address_clubs', (table) => {
       table.increments();
       table
-          .integer('club_id')
-          .notNullable()
-          .unsigned()
-          .unique()
-          .references('clubs.id');
+        .integer('club_id')
+        .notNullable()
+        .unsigned()
+        .unique()
+        .references('clubs.id');
       table
-          .integer('address_id')
-          .notNullable()
-          .unsigned()
-          .unique()
-          .references('addresses.id');
+        .integer('address_id')
+        .notNullable()
+        .unsigned()
+        .unique()
+        .references('addresses.id');
       table.timestamps();
     });
   }

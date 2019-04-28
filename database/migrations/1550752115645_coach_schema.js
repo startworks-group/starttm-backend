@@ -8,16 +8,16 @@ class CoachSchema extends Schema {
     this.create('coaches', (table) => {
       table.increments();
       table
-          .integer('user_id')
-          .unsigned()
-          .unique()
-          .notNullable()
-          .references('users.id');
+        .integer('user_id')
+        .unsigned()
+        .unique()
+        .notNullable()
+        .references('users.id');
       table
-          .integer('club_id')
-          .unsigned()
-          .notNullable()
-          .references('clubs.id');
+        .integer('club_id')
+        .unsigned()
+        .notNullable()
+        .references('clubs.id');
       table.timestamps();
 
       table.unique(['user_id', 'club_id']);

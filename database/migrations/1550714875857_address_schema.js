@@ -9,9 +9,9 @@ class AddressSchema extends Schema {
       table.increments();
       table.string('street').notNullable();
       table
-          .integer('number')
-          .notNullable()
-          .unsigned();
+        .integer('number')
+        .notNullable()
+        .unsigned();
       table.string('neighborhood').notNullable();
       table.string('cep').notNullable();
       table.string('complement').notNullable();
@@ -26,7 +26,7 @@ class AddressSchema extends Schema {
         'cep',
         'complement',
         'city',
-        'state',
+        'state'
       ]);
     });
   }

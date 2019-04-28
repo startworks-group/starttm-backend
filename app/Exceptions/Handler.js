@@ -14,7 +14,7 @@ class ExceptionHandler extends BaseExceptionHandler {
     return response.status(error.status).send(error.message);
   }
 
-  async report(error, { request }) { }
+  async report(error, { request }) {}
 }
 
 module.exports = ExceptionHandler;

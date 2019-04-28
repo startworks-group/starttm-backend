@@ -8,20 +8,20 @@ class AthleteSchema extends Schema {
     this.create('athletes', (table) => {
       table.increments();
       table
-          .integer('user_id')
-          .unsigned()
-          .notNullable()
-          .unique()
-          .references('users.id');
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .unique()
+        .references('users.id');
       table
-          .integer('rating')
-          .unsigned()
-          .notNullable();
+        .integer('rating')
+        .unsigned()
+        .notNullable();
       table
-          .integer('federation_id')
-          .unsigned()
-          .notNullable()
-          .references('federations.id');
+        .integer('federation_id')
+        .unsigned()
+        .notNullable()
+        .references('federations.id');
       table.timestamps();
     });
   }

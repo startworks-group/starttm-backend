@@ -5,12 +5,12 @@ const Database = use('Database');
 const columns = ['name', 'sex', 'birth', 'cpf', 'rg', 'address_id'];
 
 class PersonController {
-  async index({request}) {
+  async index({ request }) {
     const people = await Person.all();
     return people;
   }
 
-  async store({request}) {
+  async store({ request }) {
     const data = request.only(columns);
 
     const trx = await Database.beginTransaction();
@@ -20,7 +20,7 @@ class PersonController {
     return person;
   }
 
-  async show({params}) {
+  async show({ params }) {
     const person = await Person.findOrFail(params.id);
 
     person.load('address');
@@ -28,9 +28,9 @@ class PersonController {
     return person;
   }
 
-  async update({params, request}) {
+  async update({ params, request }) {
     const updateColumns = columns.filter(
-        (item) => !['address_id'].includes(item)
+      (item) => !['address_id'].includes(item)
     );
 
     const data = request.only(updateColumns);
@@ -43,7 +43,7 @@ class PersonController {
     return person;
   }
 
-  async destroy({params}) {
+  async destroy({ params }) {
     const person = await Person.findOrFail(params.id);
     const resp = await person.delete();
 

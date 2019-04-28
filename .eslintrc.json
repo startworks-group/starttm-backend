@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": "google",
+  "extends": ["prettier", "google"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -13,6 +13,11 @@
     "ecmaVersion": 2018
   },
   "rules": {
-    "require-jsdoc": "off"
+    "quotes": ["error", "single"],
+    "require-jsdoc": "off",
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "comma-dangle": "off",
+    "max-len": "off"
   }
 }
