@@ -1,23 +1,19 @@
 {
   "env": {
-    "commonjs": true,
     "es6": true,
     "node": true
   },
-  "extends": ["prettier", "google"],
+  "extends": "airbnb-base",
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "use": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "rules": {
-    "quotes": ["error", "single"],
-    "require-jsdoc": "off",
-    "object-curly-spacing": "off",
-    "indent": "off",
-    "comma-dangle": "off",
-    "max-len": "off"
+    "class-methods-use-this": "off"
   }
 }

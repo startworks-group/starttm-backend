@@ -1,11 +1,9 @@
-'use strict';
-
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 
 class AddressClubSchema extends Schema {
   up() {
-    this.create('address_clubs', (table) => {
+    this.create('address_club', (table) => {
       table.increments();
       table
         .integer('club_id')
@@ -24,7 +22,7 @@ class AddressClubSchema extends Schema {
   }
 
   down() {
-    this.drop('address_clubs');
+    this.drop('address_club');
   }
 }
 

@@ -1,5 +1,3 @@
-'use strict';
-
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 
@@ -19,15 +17,7 @@ class AddressSchema extends Schema {
       table.string('state').notNullable();
       table.timestamps();
 
-      table.unique([
-        'street',
-        'number',
-        'neighborhood',
-        'cep',
-        'complement',
-        'city',
-        'state'
-      ]);
+      table.unique(['street', 'number', 'neighborhood', 'cep', 'complement', 'city', 'state']);
     });
   }
 
