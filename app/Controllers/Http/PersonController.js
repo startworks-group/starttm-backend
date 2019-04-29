@@ -36,9 +36,8 @@ class PersonController {
   }
 
   async update({ params, request }) {
-    const updateColumns = Person.columns().filter(item => !['address_id'].includes(item));
+    const data = request.only(Person.columns());
 
-    const data = request.only(updateColumns);
     const person = await Person.findOrFail(params.id);
 
     person.merge(data);
