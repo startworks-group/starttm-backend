@@ -11,16 +11,16 @@ class AddressPersonSchema extends Schema {
         .unsigned()
         .unique()
         .references('addresses.id')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
+        .onUpdate('cascade')
+        .onDelete('cascade');
       table
         .integer('person_id')
         .notNullable()
         .unsigned()
         .unique()
         .references('people.id')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
+        .onUpdate('cascade')
+        .onDelete('cascade');
       table.unique(['address_id', 'person_id']);
       table.timestamps();
     });

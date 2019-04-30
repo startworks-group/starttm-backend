@@ -22,7 +22,7 @@ class PersonController {
 
     await person.address().attach([address.id], null, trx);
 
-    trx.commit();
+    await trx.commit();
 
     return person;
   }
@@ -30,7 +30,7 @@ class PersonController {
   async show({ params }) {
     const person = await Person.findOrFail(params.id);
 
-    person.load('address');
+    await person.load('address');
 
     return person;
   }
@@ -49,9 +49,16 @@ class PersonController {
 
   async destroy({ params }) {
     const person = await Person.findOrFail(params.id);
-    const resp = await person.delete();
 
-    return resp;
+    const query = await person.address().fetch();
+    const { id: addressId } = query.rows[0];
+    const address = await Address.findOrFail(addressId);
+
+    await person.address().detach();
+    await person.delete();
+    await address.delete();
+
+    return person;
   }
 }
 
