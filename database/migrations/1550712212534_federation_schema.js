@@ -1,5 +1,3 @@
-'use strict';
-
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 const ufs = require('../data/address/ufs');
@@ -8,6 +6,12 @@ class FederationSchema extends Schema {
   up() {
     this.create('federations', (table) => {
       table.increments();
+      table
+        .integer('user_manager_id')
+        .notNullable()
+        .unsigned()
+        .unique()
+        .references('users.id');
       table.enu('uf', ufs).notNullable();
       table
         .string('name')

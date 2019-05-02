@@ -1,5 +1,6 @@
 # Node modules
 node_modules
+.npm
 
 # Adonis directory for storing tmp files
 tmp
@@ -12,3 +13,6 @@ database/starttm.sqlite
 
 # Vscode debug
 .vscode
+
+#
+.config
