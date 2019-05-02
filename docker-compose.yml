@@ -31,7 +31,7 @@ services:
       - "POSTGRES_USER=starttm"
       - "POSTGRES_PASSWORD="
     ports:
-      - "5433:5432"
+      - "5434:5432"
     logging:
       driver: none
 
