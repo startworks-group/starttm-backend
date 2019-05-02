@@ -15,6 +15,9 @@ else
 	exit 1
 fi
 
+echo "\n\n\nGenerate Key:"
+adonis key:generate
+
 echo "\n\n\nRun migration:"
 adonis migration:run --force
 
