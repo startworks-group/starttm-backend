@@ -8,8 +8,6 @@ class FederationController {
 
   async store({ request }) {
     const data = request.only(Federation.columns());
-
-    await User.findOrFail(data.user_manager_id);
     const federation = await Federation.create(data);
 
     return federation;
