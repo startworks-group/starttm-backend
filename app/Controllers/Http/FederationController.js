@@ -18,17 +18,11 @@ class FederationController {
   async show({ params }) {
     const federation = await Federation.findOrFail(params.id);
 
-    await federation.loadMany(['userManager']);
-
     return federation;
   }
 
   async update({ params, request }) {
-    const updateColumns = Federation.columns().filter(
-      value => !['user_manager_id'].includes(value),
-    );
-
-    const data = request.only(updateColumns);
+    const data = request.only(Federation.columns());
     const federation = await Federation.findOrFail(params.id);
 
     federation.merge(data);

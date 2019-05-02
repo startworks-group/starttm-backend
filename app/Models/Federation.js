@@ -7,11 +7,7 @@ class Federation extends Model {
   }
 
   static columns() {
-    return ['name', 'initials', 'uf', 'user_manager_id'];
-  }
-
-  userManager() {
-    return this.belongsTo('App/Models/User', 'user_manager_id', 'id');
+    return ['name', 'initials', 'uf'];
   }
 }
 
