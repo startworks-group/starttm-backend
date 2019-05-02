@@ -15,7 +15,7 @@ class Person extends Model {
   }
 
   address() {
-    return this.belongsToMany('App/Models/Address').pivotTable('person_address');
+    return this.belongsTo('App/Models/Address');
   }
 }
 

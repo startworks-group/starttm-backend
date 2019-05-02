@@ -12,6 +12,13 @@ class PersonSchema extends Schema {
         .notNullable()
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      table
+        .integer('address_id')
+        .unsigned()
+        .references('addresses.id')
+        .notNullable()
+        .onUpdate('cascade')
+        .onDelete('cascade');
       table.string('name').notNullable();
       table.enu('sex', ['MALE', 'FEMALE']).notNullable();
       table.date('birth').notNullable();

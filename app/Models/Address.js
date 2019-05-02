@@ -2,8 +2,8 @@
 const Model = use('Model');
 
 class Address extends Model {
-  person() {
-    return this.belongsToMany('App/Models/Person').pivotTable('person_address');
+  static boot() {
+    super.boot();
   }
 }
 

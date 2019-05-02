@@ -17,10 +17,10 @@ class PersonController {
 
     const trx = await Database.beginTransaction();
 
-    const person = await user.person().create(data, trx);
     const address = await Address.create(addressData, trx);
 
-    await person.address().attach([address.id], null, trx);
+    data.address_id = address.id;
+    const person = await user.person().create(data, trx);
 
     await trx.commit();
 
@@ -30,14 +30,13 @@ class PersonController {
   async show({ params }) {
     const person = await Person.findOrFail(params.id);
 
-    await person.load('address');
+    await person.loadMany(['address', 'user']);
 
     return person;
   }
 
   async update({ params, request }) {
     const data = request.only(Person.columns());
-
     const person = await Person.findOrFail(params.id);
 
     person.merge(data);
@@ -49,12 +48,8 @@ class PersonController {
 
   async destroy({ params }) {
     const person = await Person.findOrFail(params.id);
+    const address = await person.address().fetch();
 
-    const query = await person.address().fetch();
-    const { id: addressId } = query.rows[0];
-    const address = await Address.findOrFail(addressId);
-
-    await person.address().detach();
     await person.delete();
     await address.delete();
 

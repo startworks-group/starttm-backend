@@ -25,5 +25,5 @@ module.exports = [
   'ES',
   'DF',
   'CE',
-  'AP'
+  'AP',
 ];
