@@ -27,21 +27,6 @@ Inicie o servidor e acesse via http://127.0.0.1:3333 🤞🙏⏱👍
 $ adonis serve   
 ```
 
-## Start the environement :
-```
-docker-compose up
-```
-
-## The step:
-- npm install
-- Copy .env file
-- Run migration
-- Run node server
-
-## Enter in the nodejs container :
-```
-docker exec -it appname-nodejs /bin/bash
-```
 
 ### Colaboradores
 <hr>
