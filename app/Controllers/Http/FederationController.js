@@ -1,16 +1,13 @@
-'use strict';
-
-const Federation = use('App/Models/Federation');
-const columns = ['name', 'initials', 'uf'];
+const { Federation, User } = use('App/Models');
 
 class FederationController {
-  async index({ request }) {
+  async index() {
     const federations = await Federation.all();
     return federations;
   }
 
   async store({ request }) {
-    const data = request.only(columns);
+    const data = request.only(Federation.columns());
     const federation = await Federation.create(data);
 
     return federation;
@@ -18,11 +15,12 @@ class FederationController {
 
   async show({ params }) {
     const federation = await Federation.findOrFail(params.id);
+
     return federation;
   }
 
   async update({ params, request }) {
-    const data = request.only(columns);
+    const data = request.only(Federation.columns());
     const federation = await Federation.findOrFail(params.id);
 
     federation.merge(data);
