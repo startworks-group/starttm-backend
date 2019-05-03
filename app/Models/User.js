@@ -13,6 +13,13 @@ class User extends Model {
   person() {
     return this.hasOne('App/Models/Person');
   }
+
+  static get traits() {
+    return [
+      '@provider:Adonis/Acl/HasRole',
+      '@provider:Adonis/Acl/HasPermission',
+    ]
+  }
 }
 
 module.exports = User;

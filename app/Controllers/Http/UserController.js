@@ -14,8 +14,8 @@ class UserController {
     return user;
   }
 
-  async index() {
-    const users = await User.all();
+  async index({ params }) {
+    const users = await User.findByOrFail();
 
     return users;
   }
