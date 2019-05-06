@@ -36,11 +36,11 @@ services:
       driver: none
 
   api:
-    container_name:  "${APP_NAME}-nodejs"
+    image: node:10.13
+    container_name: starttm-ws
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh ./docker-start.sh
     environment:
       - NODE_ENV=dev
     volumes:
