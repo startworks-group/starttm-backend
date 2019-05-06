@@ -2,8 +2,8 @@
 const Model = use('Model');
 
 class Address extends Model {
-  person() {
-    return this.belongsTo('App/Models/Person');
+  static boot() {
+    super.boot();
   }
 }
 

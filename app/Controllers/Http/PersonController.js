@@ -1,19 +1,28 @@
-const Person = use('App/Models/Person');
+const { Person, User, Address } = use('App/Models');
 const Database = use('Database');
-const columns = ['name', 'sex', 'birth', 'cpf', 'rg', 'address_id'];
 
 class PersonController {
-  async index({ request }) {
+  async index() {
     const people = await Person.all();
     return people;
   }
 
-  async store({ request }) {
-    const data = request.only(columns);
+  async store({ request, params }) {
+    const { users_id } = params;
+
+    const data = request.only(Person.columns());
+    const addressData = request.input('address');
+
+    const user = await User.findOrFail(users_id);
 
     const trx = await Database.beginTransaction();
 
-    const person = await Person.create(data, trx);
+    const address = await Address.create(addressData, trx);
+
+    data.address_id = address.id;
+    const person = await user.person().create(data, trx);
+
+    await trx.commit();
 
     return person;
   }
@@ -21,15 +30,13 @@ class PersonController {
   async show({ params }) {
     const person = await Person.findOrFail(params.id);
 
-    person.load('address');
+    await person.loadMany(['address', 'user']);
 
     return person;
   }
 
   async update({ params, request }) {
-    const updateColumns = columns.filter(item => !['address_id'].includes(item));
-
-    const data = request.only(updateColumns);
+    const data = request.only(Person.columns());
     const person = await Person.findOrFail(params.id);
 
     person.merge(data);
@@ -41,9 +48,12 @@ class PersonController {
 
   async destroy({ params }) {
     const person = await Person.findOrFail(params.id);
-    const resp = await person.delete();
+    const address = await person.address().fetch();
 
-    return resp;
+    await person.delete();
+    await address.delete();
+
+    return person;
   }
 }
 

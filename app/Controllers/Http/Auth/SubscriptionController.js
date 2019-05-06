@@ -1,7 +1,6 @@
 const Hash = use('Hash');
 const Mail = use('Mail');
-
-const Subscription = use('App/Models/Auth/Subscription');
+const { Subscription } = use('App/Models');
 
 class SubscriptionController {
   async store({ request, response }) {
@@ -21,7 +20,8 @@ class SubscriptionController {
 
     response.status(202).send({
       message: 'Confirmation email has been send',
-      link: `${redirectUrl}/${token}`,
+      link: `${redirectUrl}${token}`,
+      token,
     });
   }
 }
