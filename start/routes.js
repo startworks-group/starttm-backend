@@ -16,3 +16,6 @@ Route.resource('federations', 'FederationController').apiOnly();
 
 // Clubs
 Route.resource('clubs', 'ClubController').apiOnly();
+
+// Event
+Route.resource('events', 'EventController').apiOnly();
