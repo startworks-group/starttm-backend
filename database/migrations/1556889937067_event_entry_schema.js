@@ -1,5 +1,6 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
+const entryTypes = require('../data/event/entries');
 
 class EntrySchema extends Schema {
   up() {
@@ -10,7 +11,7 @@ class EntrySchema extends Schema {
         .notNullable()
         .unsigned()
         .references('event_id');
-      table.enu('type', ['R', 'K', 'RK', 'KK', 'KKR']).notNullable();
+      table.enu('type', entryTypes).notNullable();
       table
         .double('price')
         .notNullable()

@@ -1,4 +1,4 @@
-const { Event, Address } = use('App/Models');
+const { Event, Address, User } = use('App/Models');
 const Database = use('Database');
 
 class EventController {
@@ -10,10 +10,14 @@ class EventController {
   async store({ request }) {
     const data = request.only(Event.columns());
     const {
+      owner_id: ownerId,
       address: addressData,
       entries: entriesData,
       championships: championshipsData,
     } = request.all();
+
+    const user = await User.findOrFail(ownerId);
+    data.owner_id = user.id;
 
     const trx = await Database.beginTransaction();
 
@@ -31,7 +35,7 @@ class EventController {
 
   async show({ params }) {
     const event = await Event.findOrFail(params.id);
-    await event.loadMany(['address', 'entries', 'championships']);
+    await event.loadMany(['owner', 'address', 'entries', 'championships']);
     return event;
   }
 

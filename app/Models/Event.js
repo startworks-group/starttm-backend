@@ -7,7 +7,11 @@ class Event extends Model {
   }
 
   static columns() {
-    return ['name', 'start', 'end'];
+    return ['name', 'type', 'start', 'end'];
+  }
+
+  owner() {
+    return this.belongsTo('App/Models/User');
   }
 
   address() {
