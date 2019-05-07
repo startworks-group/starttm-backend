@@ -2,19 +2,20 @@
 # Docker-Compose configuration file.
 
 # v3 syntax
-version: '3.7'
+#version: '3.7'
+version: '3.3'
 
 # Volumes (for persist data when container restart)
 volumes:
   # Postgres Data
   starttmws-postgres-data:
-    driver: local
+    #driver: local
 
 # Networks
 networks:
   starttm:
-    name: starttm
-    driver: bridge
+    #name: starttm
+    #driver: bridge
 
 # Services
 services:
@@ -27,9 +28,9 @@ services:
     networks:
       - starttm
     environment:
-      - "POSTGRES_DB=starttm"
-      - "POSTGRES_USER=starttm"
-      - "POSTGRES_PASSWORD="
+      POSTGRES_DB: starttm
+      POSTGRES_USER: starttm
+      #- POSTGRES_PASSWORD="
     ports:
       - "5434:5432"
     logging:

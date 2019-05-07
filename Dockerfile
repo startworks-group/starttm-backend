@@ -10,3 +10,4 @@ USER root
 WORKDIR $HOME
 RUN npm i -g @adonisjs/cli
 RUN npm install
+CMD ["npm","run","dev"]
