@@ -37,7 +37,7 @@ services:
       driver: none
 
   api:
-    image: node:10.13
+    #image: node:10.13
     container_name: starttm-ws
     build:
       context: .
