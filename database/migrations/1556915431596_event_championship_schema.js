@@ -10,7 +10,16 @@ class ChampionshipSchema extends Schema {
         .notNullable()
         .unsigned()
         .references('events.id');
-      table.string('name').notNullable();
+      table.enu('sex', ['M', 'F']).notNullable();
+      table.enu('type', ['RAT', 'RAK']).notNullable();
+      table
+        .integer('upperLimit')
+        .notNullable()
+        .unsigned();
+      table
+        .integer('downLimit')
+        .notNullable()
+        .unsigned();
       table.timestamps();
     });
   }
