@@ -6,8 +6,12 @@ class Championship extends Model {
     super.boot();
   }
 
+  static columns() {
+    return ['sex', 'type', 'upperLimit', 'downLimit'];
+  }
+
   athleteInscriptions() {
-    this.hasMany('App/Models/Event/AthleteInscription');
+    return this.hasMany('App/Models/Event/AthleteInscription');
   }
 }
 
