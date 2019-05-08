@@ -1,6 +1,18 @@
 const { User, Subscription } = use('App/Models');
 
 class UserController {
+  async index() {
+    const users = await User.all();
+
+    return users;
+  }
+
+  async show({ params }) {
+    const user = await User.find(params.id);
+
+    return user;
+  }
+
   async store({ request }) {
     const token = request.input('subscriptionToken');
 
@@ -10,18 +22,6 @@ class UserController {
     const user = await User.create({ email, username, password });
 
     subscription.delete();
-
-    return user;
-  }
-
-  async index() {
-    const users = await User.all();
-
-    return users;
-  }
-
-  async show({ params }) {
-    const user = await User.find(params.id);
 
     return user;
   }

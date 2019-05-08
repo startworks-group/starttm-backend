@@ -11,7 +11,7 @@ class Event extends Model {
   }
 
   owner() {
-    return this.belongsTo('App/Models/User');
+    return this.belongsTo('App/Models/User', 'owner_id', 'id');
   }
 
   address() {
