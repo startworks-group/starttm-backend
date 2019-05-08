@@ -6,7 +6,7 @@ class UserController {
 
     const subscription = await Subscription.findByOrFail('token', token);
 
-    const { email, username, password } = subscription;
+    const { email, username, password } = subscription;    
     const user = await User.create({ email, username, password });
 
     subscription.delete();
