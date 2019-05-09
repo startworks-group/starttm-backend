@@ -1,93 +1,49 @@
-'use strict'
+const { Championship, Event } = use('App/Models');
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
-/**
- * Resourceful controller for interacting with championships
- */
 class ChampionshipController {
-  /**
-   * Show a list of all championships.
-   * GET championships
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index({ request, response, view }) {
+    const championships = await Championship.all();
+    return championships;
   }
 
-  /**
-   * Render a form to be used for creating a new championship.
-   * GET championships/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, params }) {
+    const data = request.only(Championship.columns());
+
+    const event = await Event.findOrFail(params.events_id);
+    const championship = await event.championships().create(data);
+
+    return championship;
   }
 
-  /**
-   * Create/save a new championship.
-   * POST championships
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async show({ params }) {
+    const championship = await Championship.findOrFail(params.id);
+
+    await championship.loadMany(['athleteInscriptions']);
+
+    return championship;
   }
 
-  /**
-   * Display a single championship.
-   * GET championships/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
+  async update({ request, params }) {
+    const data = request.only(Championship.columns());
+
+    const championship = await Championship.findOrFail(params.id);
+
+    championship.merge(data);
+
+    await championship.save();
+
+    return championship;
   }
 
-  /**
-   * Render a form to update an existing championship.
-   * GET championships/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+  async destroy({ params }) {
+    const championship = await Championship.findOrFail(params.id);
 
-  /**
-   * Update championship details.
-   * PUT or PATCH championships/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
+    await championship.athleteInscriptions().delete();
 
-  /**
-   * Delete a championship with id.
-   * DELETE championships/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    const resp = await championship.delete();
+
+    return resp;
   }
 }
 
-module.exports = ChampionshipController
+module.exports = ChampionshipController;

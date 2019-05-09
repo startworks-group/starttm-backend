@@ -50,10 +50,10 @@ class PersonController {
     const person = await Person.findOrFail(params.id);
     const address = await person.address().fetch();
 
-    await person.delete();
     await address.delete();
+    const resp = await person.delete();
 
-    return person;
+    return resp;
   }
 }
 

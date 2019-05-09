@@ -17,5 +17,8 @@ Route.resource('federations', 'FederationController').apiOnly();
 // Clubs
 Route.resource('clubs', 'ClubController').apiOnly();
 
-// Event
+// Events
 Route.resource('events', 'EventController').apiOnly();
+
+// Championships
+Route.resource('events.championships', 'Event/ChampionshipController').apiOnly();
