@@ -1,7 +1,7 @@
 const { Championship, Event } = use('App/Models');
 
 class ChampionshipController {
-  async index({ request, response, view }) {
+  async index() {
     const championships = await Championship.all();
     return championships;
   }

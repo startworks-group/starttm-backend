@@ -1,4 +1,4 @@
-const { Athlete, Federation, User } = use('App/Models');
+const { Athlete, User } = use('App/Models');
 
 class AthleteController {
   async index() {
@@ -19,7 +19,6 @@ class AthleteController {
     const data = request.only(Athlete.columns());
 
     const user = await User.findOrFail(params.users_id);
-    await Federation.findOrFail(data.federation_id);
 
     const athlete = await user.athlete().create(data);
 
@@ -30,7 +29,6 @@ class AthleteController {
     const data = request.only(Athlete.columns());
 
     const athlete = await Athlete.findOrFail(params.id);
-    await Federation.findOrFail(data.federation_id);
 
     athlete.merge(data);
 
