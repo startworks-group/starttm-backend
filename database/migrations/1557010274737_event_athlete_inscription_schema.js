@@ -17,6 +17,7 @@ class AthleteInscriptionSchema extends Schema {
         .references('championships.id');
       table.boolean('approved').defaultTo(false);
       table.timestamps();
+      table.unique(['athlete_id', 'championship_id']);
     });
   }
 

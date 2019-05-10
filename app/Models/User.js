@@ -14,6 +14,10 @@ class User extends Model {
     return this.hasOne('App/Models/Person');
   }
 
+  athlete() {
+    return this.hasOne('App/Models/Athlete');
+  }
+
   static get traits() {
     return [
       '@provider:Adonis/Acl/HasRole',
