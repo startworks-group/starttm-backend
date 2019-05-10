@@ -10,6 +10,8 @@ class UserController {
   async show({ params }) {
     const user = await User.find(params.id);
 
+    await user.loadMany(['person', 'athlete']);
+
     return user;
   }
 

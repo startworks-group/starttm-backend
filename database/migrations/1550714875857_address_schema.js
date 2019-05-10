@@ -16,8 +16,6 @@ class AddressSchema extends Schema {
       table.string('city').notNullable();
       table.string('state').notNullable();
       table.timestamps();
-
-      table.unique(['street', 'number', 'neighborhood', 'cep', 'complement', 'city', 'state']);
     });
   }
 

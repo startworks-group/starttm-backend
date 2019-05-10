@@ -13,6 +13,10 @@ class User extends Model {
   person() {
     return this.hasOne('App/Models/Person');
   }
+
+  athlete() {
+    return this.hasOne('App/Models/Athlete');
+  }
 }
 
 module.exports = User;

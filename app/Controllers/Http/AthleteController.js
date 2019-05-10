@@ -1,64 +1,51 @@
+const { Athlete, Federation, User } = use('App/Models');
 
-
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
-/**
- * Resourceful controller for interacting with athletes
- */
 class AthleteController {
-  /**
-   * Show a list of all athletes.
-   * GET athletes
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index({ request, response, view }) {}
+  async index() {
+    const athletes = await Athlete.all();
+    return athletes;
+  }
 
-  /**
-   * Render a form to be used for creating a new athlete.
-   * GET athletes/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({ request, response, view }) {}
+  async show({ params }) {
+    const athlete = await Athlete.findOrFail(params.id);
 
-  /**
-   * Create/save a new athlete.
-   * POST athletes
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store({ request, response }) {}
+    await athlete.loadMany(['federation', 'championshipInscriptions']);
+    await athlete.load('user.person');
 
-  /**
-   * Update athlete details.
-   * PUT or PATCH athletes/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update({ params, request, response }) {}
+    return athlete;
+  }
 
-  /**
-   * Delete a athlete with id.
-   * DELETE athletes/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy({ params, request, response }) {}
+  async store({ request, params }) {
+    const data = request.only(Athlete.columns());
+
+    const user = await User.findOrFail(params.users_id);
+    await Federation.findOrFail(data.federation_id);
+
+    const athlete = await user.athlete().create(data);
+
+    return athlete;
+  }
+
+  async update({ params, request }) {
+    const data = request.only(Athlete.columns());
+
+    const athlete = await Athlete.findOrFail(params.id);
+    await Federation.findOrFail(data.federation_id);
+
+    athlete.merge(data);
+
+    await athlete.save();
+
+    return athlete;
+  }
+
+  async destroy({ params }) {
+    const athlete = await Athlete.findOrFail(params.id);
+
+    const resp = await athlete.delete();
+
+    return resp;
+  }
 }
 
 module.exports = AthleteController;

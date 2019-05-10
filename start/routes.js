@@ -22,3 +22,6 @@ Route.resource('events', 'EventController').apiOnly();
 
 // Championships
 Route.resource('events.championships', 'Event/ChampionshipController').apiOnly();
+
+// Athletes
+Route.resource('users.athletes', 'AthleteController').apiOnly();

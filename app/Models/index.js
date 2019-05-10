@@ -4,6 +4,7 @@ const Address = use('App/Models/Address');
 const Subscription = use('App/Models/Auth/Subscription');
 const Club = use('App/Models/Club');
 const Federation = use('App/Models/Federation');
+const Athlete = use('App/Models/Athlete');
 
 const Event = use('App/Models/Event');
 const Entry = use('App/Models/Event/Entry');
@@ -16,6 +17,7 @@ module.exports = {
   Subscription,
   Club,
   Federation,
+  Athlete,
   Event,
   Entry,
   Championship,
