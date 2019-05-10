@@ -2,8 +2,29 @@
 const Schema = use('Schema');
 
 class ClubSchema extends Schema {
-  up() {
-    this.create('clubs', (table) => {
+  async up() {
+    const federationsExists = await this.hasTable('federations');
+    const addressesExists = await this.hasTable('addresses');
+    if (federationsExists && addressesExists){
+      this.create('clubs', (table) => {
+        table.increments();
+        table.string('name').notNullable();
+        table
+          .integer('federation_id')
+          .notNullable()
+          .unique()
+          .unsigned()
+          .references('federations.id');
+        table
+          .integer('address_id')
+          .notNullable()
+          .unique()
+          .unsigned()
+          .references('addresses.id');
+        table.timestamps();
+      });
+    }
+    /* this.create('clubs', (table) => {
       table.increments();
       table.string('name').notNullable();
       table
@@ -19,7 +40,7 @@ class ClubSchema extends Schema {
         .unsigned()
         .references('addresses.id');
       table.timestamps();
-    });
+    }); */
   }
 
   down() {
