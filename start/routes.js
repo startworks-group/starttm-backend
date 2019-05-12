@@ -28,6 +28,6 @@ Route.resource('users.athletes', 'AthleteController').apiOnly();
 
 // Athlete Inscription
 Route.resource(
-  'championships.athlete-inscriptions',
+  'events.championships.athlete-inscriptions',
   'Event/AthleteInscriptionController',
 ).apiOnly();

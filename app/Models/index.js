@@ -9,6 +9,7 @@ const Athlete = use('App/Models/Athlete');
 const Event = use('App/Models/Event');
 const Entry = use('App/Models/Event/Entry');
 const Championship = use('App/Models/Event/Championship');
+const AthleteInscription = use('App/Models/Event/AthleteInscription');
 
 module.exports = {
   User,
@@ -21,4 +22,5 @@ module.exports = {
   Event,
   Entry,
   Championship,
+  AthleteInscription,
 };

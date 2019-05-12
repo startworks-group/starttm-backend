@@ -1,93 +1,48 @@
-'use strict'
+const { AthleteInscription, Championship } = use('App/Models');
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
-/**
- * Resourceful controller for interacting with athleteinscriptions
- */
 class AthleteInscriptionController {
-  /**
-   * Show a list of all athleteinscriptions.
-   * GET athleteinscriptions
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index() {
+    const inscriptions = await AthleteInscription.all();
+    return inscriptions;
   }
 
-  /**
-   * Render a form to be used for creating a new athleteinscription.
-   * GET athleteinscriptions/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, params }) {
+    const data = await request.only(AthleteInscription.columns());
+
+    const championship = await Championship.findOrFail(params.championships_id);
+
+    const inscription = await championship.athleteInscriptions().create(data);
+
+    return inscription;
   }
 
-  /**
-   * Create/save a new athleteinscription.
-   * POST athleteinscriptions
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async show({ params }) {
+    const athleteInscription = await AthleteInscription.findOrFail(params.id);
+
+    await athleteInscription.loadMany(['championship', 'athlete']);
+
+    return athleteInscription;
   }
 
-  /**
-   * Display a single athleteinscription.
-   * GET athleteinscriptions/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
+  async update({ params, request }) {
+    const data = request.only(['approved']);
+
+    const athleteInscription = await AthleteInscription.findOrFail(params.id);
+
+    athleteInscription.merge(data);
+
+    await athleteInscription.save();
+
+    return athleteInscription;
   }
 
-  /**
-   * Render a form to update an existing athleteinscription.
-   * GET athleteinscriptions/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+  async destroy({ params }) {
+    const athleteInscription = await AthleteInscription.findOrFail(params.id);
 
-  /**
-   * Update athleteinscription details.
-   * PUT or PATCH athleteinscriptions/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
+    const resp = await athleteInscription.delete();
 
-  /**
-   * Delete a athleteinscription with id.
-   * DELETE athleteinscriptions/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    return resp;
   }
 }
 
-module.exports = AthleteInscriptionController
+module.exports = AthleteInscriptionController;
