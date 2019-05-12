@@ -22,7 +22,7 @@ class ConfrontSchema extends Schema {
         .notNullable();
       table
         .string('phase')
-        .notNullable();
+        .defaultTo('classificatory');
       table
         .integer('championship_id')
         .notNullable()
