@@ -18,6 +18,12 @@ class ConfrontSchema extends Schema {
         .notNullable()
         .unsigned();
       table
+        .string('arbiter')
+        .notNullable();
+      table
+        .string('phase')
+        .notNullable();
+      table
         .integer('championship_id')
         .notNullable()
         .unsigned()
