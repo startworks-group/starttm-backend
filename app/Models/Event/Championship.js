@@ -13,6 +13,10 @@ class Championship extends Model {
   athleteInscriptions() {
     return this.hasMany('App/Models/Event/AthleteInscription');
   }
+
+  groups(){
+    return this.hasMany('App/Models/Events/Championship/Group');
+  }
 }
 
 module.exports = Championship;

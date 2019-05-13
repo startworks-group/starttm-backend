@@ -21,18 +21,6 @@ class GroupController {
   }
 
   /**
-   * Render a form to be used for creating a new group.
-   * GET groups/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
-
-  /**
    * Create/save a new group.
    * POST groups
    *
@@ -50,21 +38,8 @@ class GroupController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing group.
-   * GET groups/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
+  async show ({ params, request, response }) {
   }
 
   /**
@@ -76,17 +51,6 @@ class GroupController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a group with id.
-   * DELETE groups/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
   }
 }
 
