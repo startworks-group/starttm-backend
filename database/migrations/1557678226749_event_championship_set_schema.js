@@ -25,7 +25,7 @@ class SetSchema extends Schema {
         .onUpdate('cascade')
         .onDelete('cascade');
       table.timestamps();
-      table.unique(['order', 'confronts']);
+      // table.unique(['order']);
     });
   }
 
