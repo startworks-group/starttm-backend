@@ -7,7 +7,7 @@ class Confront extends Model {
   }
 
   static columns() {
-    return ['number', 'playerOne', 'playerTwo', 'arbiter', 'phase'];
+    return ['number', 'playerOne', 'playerTwo', 'arbiter', 'phase', 'table_id'];
   }
 
   playerOne() {
@@ -18,8 +18,12 @@ class Confront extends Model {
     return this.belongsTo('App/Models/Athlete', 'playerTwo', 'id');
   }
 
-  championship() {
-    return this.belongsTo('App/Models/Championship');
+  sets() {
+    return this.hasMany('App/Models/Event/Championship/Set');
+  }
+
+  table() {
+    return this.belongsTo('App/Models/Event/Table');
   }
 }
 

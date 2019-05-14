@@ -31,3 +31,6 @@ Route.resource(
   'championships.athlete-inscriptions',
   'Event/AthleteInscriptionController',
 ).apiOnly();
+
+// Confront
+Route.resource('championships.confronts', 'Event/Championship/ConfrontController').apiOnly();

@@ -1,93 +1,58 @@
-'use strict'
+const { Confront, Championship } = use('App/Models');
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
-/**
- * Resourceful controller for interacting with confronts
- */
 class ConfrontController {
-  /**
-   * Show a list of all confronts.
-   * GET confronts
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index({ params }) {
+    const { championships_id: championship_id } = params;
+
+    const confronts = await Confront.query()
+      .where({ championship_id })
+      .fetch();
+
+    return confronts;
   }
 
-  /**
-   * Render a form to be used for creating a new confront.
-   * GET confronts/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, params }) {
+    const { championship_id } = params;
+    const data = request.only(Confront.columns());
+
+    const championship = await Championship.findOrFail(championship_id);
+    const confront = await championship.confronts().create(data);
+
+    return confront;
   }
 
-  /**
-   * Create/save a new confront.
-   * POST confronts
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async show({ params }) {
+    const { id } = params;
+
+    const confront = await Confront.findOrFail(id);
+
+    await confront.loadMany(['playerOne', 'playerTwo', 'sets', 'table']);
+
+    return confront;
   }
 
-  /**
-   * Display a single confront.
-   * GET confronts/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
+  async update({ params, request }) {
+    const { id } = params;
+    const data = request.only(Confront.columns());
+
+    const confront = await Confront.findOrFail(id);
+
+    confront.merge(data);
+
+    await confront.save();
+
+    return confront;
   }
 
-  /**
-   * Render a form to update an existing confront.
-   * GET confronts/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+  async destroy({ params }) {
+    const { id } = params;
 
-  /**
-   * Update confront details.
-   * PUT or PATCH confronts/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
+    const confront = await Confront.findOrFail(id);
 
-  /**
-   * Delete a confront with id.
-   * DELETE confronts/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    await confront.delete();
+
+    return confront;
   }
 }
 
-module.exports = ConfrontController
+module.exports = ConfrontController;
