@@ -1,19 +1,32 @@
-const User = use('App/Models/User');
-const Person = use('App/Models/Person');
-const Address = use('App/Models/Address');
-const Subscription = use('App/Models/Auth/Subscription');
-const Club = use('App/Models/Club');
-const Federation = use('App/Models/Federation');
-const Athlete = use('App/Models/Athlete');
+'use strict';
 
-// Event
-const Event = use('App/Models/Event');
-const Entry = use('App/Models/Event/Entry');
+const base = 'App/Models';
 
-// Championship
-const Championship = use('App/Models/Event/Championship');
+const Subscription = use(`${base}/Auth/Subscription`);
+const User = use(`${base}/User`);
+const Person = use(`${base}/Person`);
+const Address = use(`${base}/Address`);
+const Club = use(`${base}/Club`);
+const Federation = use(`${base}/Federation`);
+const Athlete = use(`${base}/Athlete`);
+
+/**
+ * Event
+ */
+const event = `${base}/Event`;
+
+const Event = use(`${event}`);
+const Entry = use(`${event}/Entry`);
+const Table = use(`${event}/Table`);
+
+/**
+ * Championship
+ */
+const championship = `${event}/Championship`;
+
+const Championship = use(`${championship}`);
+const Confront = use(`${championship}/Confront`);
 const AthleteInscription = use('App/Models/Event/AthleteInscription');
-const Confront = use('App/Models/Event/Championship/Confront');
 
 module.exports = {
   User,
@@ -26,6 +39,7 @@ module.exports = {
 
   Event,
   Entry,
+  Table,
 
   Championship,
   AthleteInscription,

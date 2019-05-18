@@ -7,7 +7,7 @@ class TableSchema extends Schema {
   up() {
     this.create('tables', (table) => {
       table.increments();
-      table.enu('status', status).notNullable();
+      table.enu('status', status).defaultTo(status[0]);
       table
         .integer('number')
         .notNullable()
