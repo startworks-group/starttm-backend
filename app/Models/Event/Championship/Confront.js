@@ -1,3 +1,5 @@
+'use strict';
+
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
@@ -7,15 +9,15 @@ class Confront extends Model {
   }
 
   static columns() {
-    return ['number', 'playerOne', 'playerTwo', 'arbiter', 'phase', 'table_id'];
+    return ['number', 'player_one', 'player_two', 'arbiter', 'phase', 'table_id'];
   }
 
   playerOne() {
-    return this.belongsTo('App/Models/Athlete', 'playerOne', 'id');
+    return this.belongsTo('App/Models/Athlete', 'player_one', 'id');
   }
 
   playerTwo() {
-    return this.belongsTo('App/Models/Athlete', 'playerTwo', 'id');
+    return this.belongsTo('App/Models/Athlete', 'player_two', 'id');
   }
 
   sets() {
