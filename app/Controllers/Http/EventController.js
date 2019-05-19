@@ -35,7 +35,7 @@ class EventController {
 
   async show({ params }) {
     const event = await Event.findOrFail(params.id);
-    await event.loadMany(['owner', 'address', 'entries', 'championships']);
+    await event.loadMany(['owner', 'address', 'entries', 'championships', 'tables']);
     return event;
   }
 

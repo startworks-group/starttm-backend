@@ -17,12 +17,15 @@ class ConfrontSchema extends Schema {
         .integer('playerTwo')
         .notNullable()
         .unsigned();
+      table.string('arbiter').notNullable();
+      table.string('phase').defaultTo('classificatory');
       table
-        .string('arbiter')
-        .notNullable();
-      table
-        .string('phase')
-        .defaultTo('classificatory');
+        .integer('table_id')
+        .notNullable()
+        .unsigned()
+        .references('tables.id')
+        .onUpdate('cascade')
+        .onDelete('cascade');
       table
         .integer('championship_id')
         .notNullable()

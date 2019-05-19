@@ -1,15 +1,9 @@
+/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
-
 Route.get('/', () => ({ starttm: 'Bem vindo ao sistema Start TM' }));
 
 // Subscriptions
 Route.post('/subscriptions', 'Auth/SubscriptionController.store');
-
-// Users
-Route.resource('users', 'UserController').apiOnly();
-
-// People
-Route.resource('users.people', 'PersonController').apiOnly();
 
 // Federations
 Route.resource('federations', 'FederationController').apiOnly();
@@ -17,17 +11,37 @@ Route.resource('federations', 'FederationController').apiOnly();
 // Clubs
 Route.resource('clubs', 'ClubController').apiOnly();
 
-// Events
+/**
+ * Users
+ */
+Route.resource('users', 'UserController').apiOnly();
+Route.group(() => {
+  // People
+  Route.resource('people', 'PersonController').apiOnly();
+
+  // Athletes
+  Route.resource('athletes', 'AthleteController').apiOnly();
+}).prefix('users/:users_id/');
+
+/**
+ * Event
+ */
 Route.resource('events', 'EventController').apiOnly();
+Route.group(() => {
+  // Table
+  Route.resource('tables', 'Event/TableController').apiOnly();
 
-// Championships
-Route.resource('events.championships', 'Event/ChampionshipController').apiOnly();
+  // Championship
+  Route.resource('championships', 'Event/ChampionshipController').apiOnly();
+}).prefix('events/:events_id/');
 
-// Athletes
-Route.resource('users.athletes', 'AthleteController').apiOnly();
+/**
+ * Championship
+ */
+Route.group(() => {
+  // Confront
+  Route.resource('confronts', 'Event/Championship/ConfrontController').apiOnly();
 
-// Athlete Inscription
-Route.resource(
-  'championships.athlete-inscriptions',
-  'Event/AthleteInscriptionController',
-).apiOnly();
+  // Athlete Inscription
+  Route.resource('athlete-inscriptions', 'Event/AthleteInscriptionController').apiOnly();
+}).prefix('championships/:championships_id/');
