@@ -4,11 +4,7 @@ const { Confront, Championship } = use('App/Models');
 
 class ConfrontController {
   async index({ params }) {
-    const { championships_id: championship_id } = params;
-
-    const confronts = await Confront.query()
-      .where({ championship_id })
-      .fetch();
+    const confronts = await Confront.all();
 
     return confronts;
   }

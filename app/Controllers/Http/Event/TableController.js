@@ -3,11 +3,8 @@
 const { Table, Event } = use('App/Models');
 
 class TableController {
-  async index({ params }) {
-    const { events_id: event_id } = params;
-    const tables = await Table.query()
-      .where({ event_id })
-      .fetch();
+  async index() {
+    const tables = await Table.all();
 
     return tables;
   }
