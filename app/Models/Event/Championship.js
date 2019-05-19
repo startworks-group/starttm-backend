@@ -11,7 +11,7 @@ class Championship extends Model {
   }
 
   athleteInscriptions() {
-    return this.hasMany('App/Models/Event/AthleteInscription');
+    return this.hasMany('App/Models/Event/Championship/AthleteInscription');
   }
 
   confronts() {

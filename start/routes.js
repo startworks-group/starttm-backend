@@ -43,5 +43,8 @@ Route.group(() => {
   Route.resource('confronts', 'Event/Championship/ConfrontController').apiOnly();
 
   // Athlete Inscription
-  Route.resource('athlete-inscriptions', 'Event/AthleteInscriptionController').apiOnly();
+  Route.resource(
+    'athlete-inscriptions',
+    'Event/Championship/AthleteInscriptionController',
+  ).apiOnly();
 }).prefix('championships/:championships_id/');

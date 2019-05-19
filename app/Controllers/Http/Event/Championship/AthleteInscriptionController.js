@@ -1,3 +1,5 @@
+'use strict';
+
 const { AthleteInscription, Championship } = use('App/Models');
 
 class AthleteInscriptionController {
