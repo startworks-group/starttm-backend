@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 const { base, event, championship } = use('App/Utils/ModelsPath');
 
+=======
+'use strict';
+
+const { base, event, championship } = use('App/Utils/ModelsPath');
+
+>>>>>>> ffa861bd847a982b274b8b4a3dcea51eb6d3922c
 const Subscription = use(`${base}/Auth/Subscription`);
 const User = use(`${base}/User`);
 const Person = use(`${base}/Person`);
@@ -21,7 +28,10 @@ const Table = use(`${event}/Table`);
 const Championship = use(`${championship}`);
 const Confront = use(`${championship}/Confront`);
 const AthleteInscription = use(`${championship}/AthleteInscription`);
+<<<<<<< HEAD
 const Group = use(`${championship}/Group`);
+=======
+>>>>>>> ffa861bd847a982b274b8b4a3dcea51eb6d3922c
 
 module.exports = {
   User,
@@ -39,5 +49,8 @@ module.exports = {
   Championship,
   AthleteInscription,
   Confront,
+<<<<<<< HEAD
   Group,
+=======
+>>>>>>> ffa861bd847a982b274b8b4a3dcea51eb6d3922c
 };

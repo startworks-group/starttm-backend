@@ -1,9 +1,32 @@
-'use strict'
+'use strict';
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('Model');
 
 class Confront extends Model {
+  static boot() {
+    super.boot();
+  }
+
+  static columns() {
+    return ['number', 'player_one', 'player_two', 'arbiter', 'phase', 'table_id'];
+  }
+
+  playerOne() {
+    return this.belongsTo('App/Models/Athlete', 'player_one', 'id');
+  }
+
+  playerTwo() {
+    return this.belongsTo('App/Models/Athlete', 'player_two', 'id');
+  }
+
+  sets() {
+    return this.hasMany('App/Models/Event/Championship/Set');
+  }
+
+  table() {
+    return this.belongsTo('App/Models/Event/Table');
+  }
 }
 
-module.exports = Confront
+module.exports = Confront;

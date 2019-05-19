@@ -22,6 +22,10 @@ class Event extends Model {
     return this.hasMany('App/Models/Event/Entry');
   }
 
+  tables() {
+    return this.hasMany('App/Models/Event/Table');
+  }
+
   championships() {
     return this.hasMany('App/Models/Event/Championship');
   }

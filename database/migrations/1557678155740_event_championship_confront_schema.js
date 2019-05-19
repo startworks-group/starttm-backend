@@ -1,5 +1,9 @@
+'use strict';
+
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
+
+const phaseTypes = require('../data/confront/phase');
 
 class ConfrontSchema extends Schema {
   up() {
@@ -10,19 +14,26 @@ class ConfrontSchema extends Schema {
         .notNullable()
         .unsigned();
       table
-        .integer('playerOne')
+        .integer('player_one')
         .notNullable()
-        .unsigned();
+        .unsigned()
+        .references('athletes.id')
+        .onUpdate('cascade');
       table
-        .integer('playerTwo')
+        .integer('player_two')
         .notNullable()
-        .unsigned();
+        .unsigned()
+        .references('athletes.id')
+        .onUpdate('cascade');
+      table.string('arbiter').notNullable();
+      table.enu('phase', phaseTypes).defaultTo(phaseTypes[0]);
       table
-        .string('arbiter')
-        .notNullable();
-      table
-        .string('phase')
-        .defaultTo('classificatory');
+        .integer('table_id')
+        .notNullable()
+        .unsigned()
+        .references('tables.id')
+        .onUpdate('cascade')
+        .onDelete('cascade');
       table
         .integer('championship_id')
         .notNullable()

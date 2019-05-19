@@ -1,88 +1,53 @@
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+'use strict';
 
-/**
- * Resourceful controller for interacting with tables
- */
+const { Table, Event } = use('App/Models');
+
 class TableController {
-  /**
-   * Show a list of all tables.
-   * GET tables
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index({ request, response, view }) {}
+  async index() {
+    const tables = await Table.all();
 
-  /**
-   * Render a form to be used for creating a new table.
-   * GET tables/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({ request, response, view }) {}
+    return tables;
+  }
 
-  /**
-   * Create/save a new table.
-   * POST tables
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store({ request, response }) {}
+  async store({ request, params }) {
+    const { events_id } = params;
+    const data = request.only(Table.columns());
 
-  /**
-   * Display a single table.
-   * GET tables/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show({
-    params, request, response, view,
-  }) {}
+    const event = await Event.findOrFail(events_id);
+    const table = await event.tables().create(data);
 
-  /**
-   * Render a form to update an existing table.
-   * GET tables/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({
-    params, request, response, view,
-  }) {}
+    return table;
+  }
 
-  /**
-   * Update table details.
-   * PUT or PATCH tables/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update({ params, request, response }) {}
+  async show({ params }) {
+    const { id } = params;
+    const table = await Table.findOrFail(id);
 
-  /**
-   * Delete a table with id.
-   * DELETE tables/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy({ params, request, response }) {}
+    await table.loadMany(['confronts']);
+
+    return table;
+  }
+
+  async update({ params, request }) {
+    const data = request.only(Table.columns());
+    const { id } = params;
+
+    const table = await Table.findOrFail(id);
+
+    table.merge(data);
+    await table.save();
+
+    return table;
+  }
+
+  async destroy({ params }) {
+    const { id } = params;
+
+    const table = await Table.findOrFail(id);
+    const resp = await table.delete();
+
+    return resp;
+  }
 }
 
 module.exports = TableController;

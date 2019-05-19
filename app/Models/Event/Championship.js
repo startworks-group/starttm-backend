@@ -14,6 +14,7 @@ class Championship extends Model {
   }
 
   athleteInscriptions() {
+<<<<<<< HEAD
     return this.hasMany(`${championship}/AthleteInscription`);
   }
 
@@ -23,6 +24,13 @@ class Championship extends Model {
 
   groups() {
     return this.hasMany(`${championship}/Group`);
+=======
+    return this.hasMany('App/Models/Event/Championship/AthleteInscription');
+  }
+
+  confronts() {
+    return this.hasMany('App/Models/Event/Championship/Confront');
+>>>>>>> ffa861bd847a982b274b8b4a3dcea51eb6d3922c
   }
 }
 
