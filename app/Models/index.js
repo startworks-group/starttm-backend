@@ -1,6 +1,6 @@
 'use strict';
 
-const base = 'App/Models';
+const { base, event, championship } = use('App/Utils/ModelsPath');
 
 const Subscription = use(`${base}/Auth/Subscription`);
 const User = use(`${base}/User`);
@@ -13,8 +13,6 @@ const Athlete = use(`${base}/Athlete`);
 /**
  * Event
  */
-const event = `${base}/Event`;
-
 const Event = use(`${event}`);
 const Entry = use(`${event}/Entry`);
 const Table = use(`${event}/Table`);
@@ -22,8 +20,6 @@ const Table = use(`${event}/Table`);
 /**
  * Championship
  */
-const championship = `${event}/Championship`;
-
 const Championship = use(`${championship}`);
 const Confront = use(`${championship}/Confront`);
 const AthleteInscription = use('App/Models/Event/AthleteInscription');
