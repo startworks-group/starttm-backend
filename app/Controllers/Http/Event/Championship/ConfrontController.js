@@ -1,3 +1,5 @@
+'use strict';
+
 const { Confront, Championship } = use('App/Models');
 
 class ConfrontController {
@@ -12,10 +14,10 @@ class ConfrontController {
   }
 
   async store({ request, params }) {
-    const { championship_id } = params;
+    const { championships_id } = params;
     const data = request.only(Confront.columns());
 
-    const championship = await Championship.findOrFail(championship_id);
+    const championship = await Championship.findOrFail(championships_id);
     const confront = await championship.confronts().create(data);
 
     return confront;
@@ -26,7 +28,7 @@ class ConfrontController {
 
     const confront = await Confront.findOrFail(id);
 
-    await confront.loadMany(['playerOne', 'playerTwo', 'sets', 'table']);
+    await confront.loadMany(['playerOne', 'playerTwo', 'table']);
 
     return confront;
   }
