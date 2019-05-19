@@ -1,5 +1,8 @@
+
+
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
+const { championship } = use('App/Utils/ModelsPath');
 
 class Championship extends Model {
   static boot() {
@@ -11,11 +14,15 @@ class Championship extends Model {
   }
 
   athleteInscriptions() {
-    return this.hasMany('App/Models/Event/AthleteInscription');
+    return this.hasMany(`${championship}/AthleteInscription`);
   }
 
-  groups(){
-    return this.hasMany('App/Models/Events/Championship/Group');
+  confronts() {
+    return this.hasMany(`${championship}/Confront`);
+  }
+
+  groups() {
+    return this.hasMany(`${championship}/Group`);
   }
 }
 

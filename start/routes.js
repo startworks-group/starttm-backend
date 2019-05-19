@@ -23,11 +23,31 @@ Route.resource('events', 'EventController').apiOnly();
 // Championships
 Route.resource('events.championships', 'Event/ChampionshipController').apiOnly();
 
-// Athletes
-Route.resource('users.athletes', 'AthleteController').apiOnly();
+/**
+ * Event
+ */
+Route.resource('events', 'EventController').apiOnly();
+Route.group(() => {
+  // Table
+  Route.resource('tables', 'Event/TableController').apiOnly();
 
-// Athlete Inscription
-Route.resource(
-  'championships.athlete-inscriptions',
-  'Event/AthleteInscriptionController',
-).apiOnly();
+  // Championship
+  Route.resource('championships', 'Event/ChampionshipController').apiOnly();
+}).prefix('events/:events_id/');
+
+/**
+ * Championship
+ */
+Route.group(() => {
+  // Confront
+  Route.resource('confronts', 'Event/Championship/ConfrontController').apiOnly();
+
+  // Athlete Inscription
+  Route.resource(
+    'athlete-inscriptions',
+    'Event/Championship/AthleteInscriptionController',
+  ).apiOnly();
+
+  // Group
+  Route.resource('groups', 'Event/Championship/GroupController').apiOnly();
+}).prefix('championships/:championships_id/');

@@ -1,5 +1,6 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
+const { base, event, championship } = use('App/Utils/ModelsPath');
 
 class AthleteInscription extends Model {
   static boot() {
@@ -16,6 +17,10 @@ class AthleteInscription extends Model {
 
   championship() {
     return this.belongsTo('App/Models/Event/Championship');
+  }
+
+  group() {
+    return this.belongsTo(`${championship}/Group`);
   }
 }
 
