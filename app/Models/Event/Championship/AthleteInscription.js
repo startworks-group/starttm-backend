@@ -1,5 +1,8 @@
+'use strict';
+
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
+const { base, event } = use('App/Utils/ModelsPath');
 
 class AthleteInscription extends Model {
   static boot() {
@@ -11,11 +14,11 @@ class AthleteInscription extends Model {
   }
 
   athlete() {
-    return this.belongsTo('App/Models/Athlete');
+    return this.belongsTo(`${base}/Athlete`);
   }
 
   championship() {
-    return this.belongsTo('App/Models/Event/Championship');
+    return this.belongsTo(`${event}/Championship`);
   }
 }
 

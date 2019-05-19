@@ -22,7 +22,7 @@ const Table = use(`${event}/Table`);
  */
 const Championship = use(`${championship}`);
 const Confront = use(`${championship}/Confront`);
-const AthleteInscription = use('App/Models/Event/AthleteInscription');
+const AthleteInscription = use(`${championship}/AthleteInscription`);
 
 module.exports = {
   User,
