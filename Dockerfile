@@ -1,13 +1,15 @@
 FROM node:10.13
 
-RUN useradd --user-group --create-home --shell /bin/false app
-
-ENV HOME /home/app
-COPY package.json $HOME/
-RUN chown -R app:app $HOME/*
-
 USER root
-WORKDIR $HOME
+
+COPY package.json ./
+COPY database ./database
+
+RUN npm install
+
+COPY ./ ./
+
+RUN cp .env.example .env
 RUN npm i -g @adonisjs/cli
 RUN npm install
 RUN npm run dev

@@ -1,21 +1,19 @@
-
 # Docker-Compose configuration file.
 
 # v3 syntax
-#version: '3.7'
-version: '3.3'
+version: '3.7'
 
 # Volumes (for persist data when container restart)
 volumes:
   # Postgres Data
   starttmws-postgres-data:
-    #driver: local
+    driver: local
 
 # Networks
 networks:
   starttm:
-    #name: starttm
-    #driver: bridge
+    name: starttm
+    driver: bridge
 
 # Services
 services:
@@ -28,16 +26,16 @@ services:
     networks:
       - starttm
     environment:
-      POSTGRES_DB: starttm
-      POSTGRES_USER: starttm
-      #- POSTGRES_PASSWORD="
+      - 'POSTGRES_DB: starttm'
+      - 'POSTGRES_USER: starttm'
+      - 'POSTGRES_PASSWORD:'
     ports:
-      - "5434:5432"
+      - '5433:5432'
     logging:
       driver: none
 
   api:
-    #image: node:10.13
+    image: node:10.13
     container_name: starttm-ws
     build:
       context: .
@@ -46,9 +44,8 @@ services:
       - NODE_ENV=dev
     volumes:
       - .:/home/app
-      - /home/app/node_modules
     ports:
-      - "3333:3333"
+      - '3333:3333'
     networks:
       - starttm
     depends_on:
