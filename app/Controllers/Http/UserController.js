@@ -1,4 +1,5 @@
 const { User, Subscription } = use('App/Models');
+const Hash = use('Hash');
 
 class UserController {
   async index() {
@@ -20,8 +21,11 @@ class UserController {
 
     const subscription = await Subscription.findByOrFail('token', token);
 
-    const { email, username, password } = subscription;    
-    const user = await User.create({ email, username, password });
+    const { email, username, password } = subscription;
+
+    const hashPass = await Hash.make(password);
+
+    const user = await User.create({ email, username, password: hashPass });
 
     subscription.delete();
 

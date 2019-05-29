@@ -18,7 +18,7 @@ class Championship extends Model {
     return this.hasMany('App/Models/Event/Championship/Confront');
   }
 
-  groups(){
+  groups() {
     return this.hasMany('App/Models/Events/Championship/Group');
   }
 }
