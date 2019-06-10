@@ -22,11 +22,11 @@ Route.group(() => {
   // Athletes
   Route.resource('athletes', 'AthleteController').apiOnly();
 }).prefix('users/:users_id/');
+Route.resource('events', 'EventController').apiOnly();
 
 /**
  * Event
  */
-Route.resource('events', 'EventController').apiOnly();
 Route.group(() => {
   // Table
   Route.resource('tables', 'Event/TableController').apiOnly();
@@ -48,3 +48,15 @@ Route.group(() => {
     'Event/Championship/AthleteInscriptionController',
   ).apiOnly();
 }).prefix('championships/:championships_id/');
+
+/**
+ * Auth Sessions
+ */
+Route.resource('sessions', 'Auth/SessionController');
+
+/**
+ * Auth Permissions
+ */
+Route.resource('permissions', 'Auth/Roles/PermissionController')
+  .apiOnly()
+  .middleware('auth');
