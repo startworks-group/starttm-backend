@@ -60,3 +60,9 @@ Route.resource('sessions', 'Auth/SessionController');
 Route.resource('permissions', 'Auth/Roles/PermissionController')
   .apiOnly()
   .middleware('auth');
+/**
+ * Auth Roles
+ */
+Route.resource('roles', 'Auth/RoleController')
+  .apiOnly()
+  .middleware('auth');
