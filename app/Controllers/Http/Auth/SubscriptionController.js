@@ -7,7 +7,9 @@ class SubscriptionController {
     const redirectUrl = request.input('redirectUrl');
     const data = request.only(['username', 'email', 'password']);
 
-    const token = await Hash.make(data.username + data.email + data.password);
+    const hash = await Hash.make(data.username + data.email + data.password);
+
+    const token = hash.replace('/', '');
 
     await Subscription.create({ ...data, token });
 
