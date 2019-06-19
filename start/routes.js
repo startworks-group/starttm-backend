@@ -33,19 +33,24 @@ Route.group(() => {
 
   // Championship
   Route.resource('championships', 'Event/ChampionshipController').apiOnly();
-}).prefix('events/:events_id/');
+})
+  .prefix('events/:events_id/')
+  .middleware(['auth', 'is:(federation)']);
 
 /**
  * Championship
  */
 Route.group(() => {
   // Confront
-  Route.resource('confronts', 'Event/Championship/ConfrontController').apiOnly();
+  Route.resource(
+    'confronts',
+    'Event/Championship/ConfrontController'
+  ).apiOnly();
 
   // Athlete Inscription
   Route.resource(
     'athlete-inscriptions',
-    'Event/Championship/AthleteInscriptionController',
+    'Event/Championship/AthleteInscriptionController'
   ).apiOnly();
 }).prefix('championships/:championships_id/');
 
