@@ -1,4 +1,5 @@
 const { User, Subscription } = use('App/Models');
+const Hash = use('Hash');
 
 class UserController {
   async index() {
@@ -10,7 +11,7 @@ class UserController {
   async show({ params }) {
     const user = await User.find(params.id);
 
-    await user.loadMany(['person', 'athlete']);
+    await user.loadMany(['person', 'athlete', 'roles', 'permissions']);
 
     return user;
   }
@@ -20,8 +21,12 @@ class UserController {
 
     const subscription = await Subscription.findByOrFail('token', token);
 
-    const { email, username, password } = subscription;    
-    const user = await User.create({ email, username, password });
+    const { permissions, roles, token, ...data } = subscription;
+    const hashPass = await Hash.make(data.password);
+
+    const user = await User.create({ data, password: hashPass });
+    if (roles) await user.roles().attach(roles);
+    if (permissions) await user.permissions().attach(permissions);
 
     subscription.delete();
 
