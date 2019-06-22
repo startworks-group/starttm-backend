@@ -17,14 +17,13 @@ class UserController {
   }
 
   async store({ request }) {
-    const token = request.input('subscriptionToken');
+    const subscriptionToken = request.input('subscriptionToken');
 
-    const subscription = await Subscription.findByOrFail('token', token);
-
-    const { permissions, roles, token, ...data } = subscription;
-    const hashPass = await Hash.make(data.password);
-
-    const user = await User.create({ data, password: hashPass });
+    const subscription = await Subscription.findByOrFail('token', subscriptionToken);
+    const { permissions, roles, token, password, username, email } = subscription;
+    const hashPass = await Hash.make(password);
+    const user = await User.create({ username, email, password: hashPass });
+    
     if (roles) await user.roles().attach(roles);
     if (permissions) await user.permissions().attach(permissions);
 
