@@ -3,10 +3,10 @@ const Antl = use('Antl');
 class AuthSubscriptionStore {
   get rules () {
     return {
-      username: 'required',
-      email: 'required|email',
+      username: 'required|unique:subscriptions',
+      email: 'required|email|unique:subscriptions',
       password: 'required',
-      redirectUrl: 'required',
+      redirect_url: 'required',
     }
   }
 
