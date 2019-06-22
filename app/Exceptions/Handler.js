@@ -10,7 +10,6 @@ class ExceptionHandler extends BaseExceptionHandler {
 	  }
 
     if ( error.status === 404 ) {
-      console.log(request);
      return response
               .status(404)
               .json({ 
