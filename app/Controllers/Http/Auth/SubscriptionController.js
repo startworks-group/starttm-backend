@@ -11,7 +11,7 @@ class SubscriptionController {
 
     const token = hash.replace('/', '');
 
-    await Subscription.findOrCreate({ ...data, token });
+    await Subscription.create({ ...data, token });
 
     // TODO implementar Queue
     //
