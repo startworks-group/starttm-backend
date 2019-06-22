@@ -5,7 +5,7 @@ Route.get('/', () => ({ starttm: 'Bem vindo ao sistema Start TM' }));
 // Subscriptions
 Route
   .post('/subscriptions', 'Auth/SubscriptionController.store')
-  .validator('Subscription');
+  .validator('Auth/Subscription/Store');
 
 // Federations
 Route.resource('federations', 'FederationController').apiOnly();
