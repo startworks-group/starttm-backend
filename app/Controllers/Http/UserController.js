@@ -3,13 +3,14 @@ const Hash = use('Hash');
 
 class UserController {
   async index() {
-    const users = await User.all();
-
-    return users;
+    return User
+            .query()
+            .with('roles')
+            .fetch();
   }
 
   async show({ params }) {
-    const user = await User.find(params.id);
+    const user = await User.findOrFail(params.id);
 
     await user.loadMany(['person', 'athlete', 'roles', 'permissions']);
 

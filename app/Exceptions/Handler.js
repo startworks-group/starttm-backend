@@ -13,9 +13,7 @@ class ExceptionHandler extends BaseExceptionHandler {
      return response
               .status(404)
               .json({ 
-                request: request.body, 
                 message: "Recurso não encontrado",
-                status: 404
               });
     }
 	
