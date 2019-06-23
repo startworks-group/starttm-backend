@@ -2,10 +2,13 @@ const { Club, Address } = use('App/Models');
 const Database = use('Database');
 
 class ClubController {
-  async index({ params }) {
+  async index({ request }) {
     return Club
             .query()
-            .paginate(params.page);
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
   async store({ request }) {
