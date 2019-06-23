@@ -2,9 +2,10 @@ const { Club, Address } = use('App/Models');
 const Database = use('Database');
 
 class ClubController {
-  async index() {
-    const clubs = await Club.all();
-    return clubs;
+  async index({ params }) {
+    return Club
+            .query()
+            .paginate(params.page);
   }
 
   async store({ request }) {
