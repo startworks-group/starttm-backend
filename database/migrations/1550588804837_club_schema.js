@@ -9,7 +9,6 @@ class ClubSchema extends Schema {
       table
         .integer('federation_id')
         .notNullable()
-        .unique()
         .unsigned()
         .references('federations.id');
       table
