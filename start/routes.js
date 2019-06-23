@@ -12,7 +12,7 @@ Route
  */
 Route.resource('users', 'UserController').apiOnly();
 // People
-Route.resource('users/:user_id/people', 'PersonController').apiOnly();
+Route.resource('people', 'PersonController').apiOnly();
 
 /**
  * Auth Sessions

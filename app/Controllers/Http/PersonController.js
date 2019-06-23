@@ -2,25 +2,27 @@ const { Person, User, Address } = use('App/Models');
 const Database = use('Database');
 
 class PersonController {
-  async index() {
-    const people = await Person.all();
-    return people;
+  async index({ request }) {
+    return Person
+            .query()
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
-  async store({ request, params }) {
-    const { users_id } = params;
-
+  async store({ request }) {
     const data = request.only(Person.columns());
     const addressData = request.input('address');
 
-    const user = await User.findOrFail(users_id);
+    const user = await User.findOrFail(request.input('user_id'));
 
     const trx = await Database.beginTransaction();
 
     const address = await Address.create(addressData, trx);
 
     data.address_id = address.id;
-    const person = await user.person().create(data, trx);
+    const person = await Person.create(data, trx);
 
     await trx.commit();
 
@@ -36,7 +38,7 @@ class PersonController {
   }
 
   async update({ params, request }) {
-    const data = request.only(Person.columns());
+    const data = request.only(Person.columnsUpdate());
     const person = await Person.findOrFail(params.id);
 
     person.merge(data);
@@ -51,9 +53,7 @@ class PersonController {
     const address = await person.address().fetch();
 
     await address.delete();
-    const resp = await person.delete();
-
-    return resp;
+    return person.delete();
   }
 }
 

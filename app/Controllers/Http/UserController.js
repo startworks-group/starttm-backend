@@ -2,11 +2,13 @@ const { User, Subscription } = use('App/Models');
 const Hash = use('Hash');
 
 class UserController {
-  async index() {
+  async index({ request }) {
     return User
             .query()
-            .with('roles')
-            .fetch();
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
   async show({ params }) {
