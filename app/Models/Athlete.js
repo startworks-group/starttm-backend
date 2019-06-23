@@ -7,11 +7,11 @@ class Athlete extends Model {
   }
 
   static columns() {
-    return ['rating', 'federation_id'];
+    return ['rating', 'federation_id', 'user_id'];
   }
 
   championshipInscriptions() {
-    return this.hasMany('App/Models/Event/AthleteInscription');
+    return this.hasMany('App/Models/Event/Championship/AthleteInscription');
   }
 
   user() {
