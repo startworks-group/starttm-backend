@@ -11,7 +11,7 @@ class Athlete extends Model {
   }
 
   championshipInscriptions() {
-    return this.hasMany('App/Models/Event/Championship/AthleteInscription');
+    return this.hasMany('App/Models/TTEvent/Championship/AthleteInscription');
   }
 
   user() {

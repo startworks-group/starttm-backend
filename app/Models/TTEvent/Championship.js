@@ -11,15 +11,15 @@ class Championship extends Model {
   }
 
   athleteInscriptions() {
-    return this.hasMany('App/Models/Event/Championship/AthleteInscription');
+    return this.hasMany('App/Models/TTEvent/Championship/AthleteInscription');
   }
 
   confronts() {
-    return this.hasMany('App/Models/Event/Championship/Confront');
+    return this.hasMany('App/Models/TTEvent/Championship/Confront');
   }
 
   groups() {
-    return this.hasMany('App/Models/Events/Championship/Group');
+    return this.hasMany('App/Models/TTEvents/Championship/Group');
   }
 }
 

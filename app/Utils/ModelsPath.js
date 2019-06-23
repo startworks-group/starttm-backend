@@ -1,7 +1,7 @@
 'use strict';
 
 const base = 'App/Models';
-const event = `${base}/Event`;
-const championship = `${event}/Championship`;
+const ttevent = `${base}/TTEvent`;
+const championship = `${ttevent}/Championship`;
 
-module.exports = { base, event, championship };
+module.exports = { base, ttevent, championship };

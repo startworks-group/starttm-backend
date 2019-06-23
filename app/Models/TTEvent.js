@@ -1,9 +1,13 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
-class Event extends Model {
+class TTEvent extends Model {
   static boot() {
     super.boot();
+  }
+
+  static get table () {
+    return 'ttevents'
   }
 
   static columns() {
@@ -19,16 +23,16 @@ class Event extends Model {
   }
 
   entries() {
-    return this.hasMany('App/Models/Event/Entry');
+    return this.hasMany('App/Models/TTEvent/Entry');
   }
 
   tables() {
-    return this.hasMany('App/Models/Event/Table');
+    return this.hasMany('App/Models/TTEvent/Table');
   }
 
   championships() {
-    return this.hasMany('App/Models/Event/Championship');
+    return this.hasMany('App/Models/TTEvent/Championship');
   }
 }
 
-module.exports = Event;
+module.exports = TTEvent;

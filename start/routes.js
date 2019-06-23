@@ -45,15 +45,15 @@ Route.resource('athletes', 'AthleteController').apiOnly();
 /**
  * Event
  */
-Route.resource('events', 'EventController').apiOnly();
+Route.resource('ttevents', 'TTEventController').apiOnly();
 Route.group(() => {
   // Table
-  Route.resource('tables', 'Event/TableController').apiOnly();
+  Route.resource('tables', 'TTEvent/TableController').apiOnly();
 
   // Championship
-  Route.resource('championships', 'Event/ChampionshipController').apiOnly();
+  Route.resource('championships', 'TTEvent/ChampionshipController').apiOnly();
 })
-  .prefix('events/:events_id/')
+  .prefix('ttevents/:ttevent_id/')
   .middleware(['auth', 'is:(federation)']);
 
 /**
@@ -63,13 +63,13 @@ Route.group(() => {
   // Confront
   Route.resource(
     'confronts',
-    'Event/Championship/ConfrontController'
+    'TTEvent/Championship/ConfrontController'
   ).apiOnly();
 
   // Athlete Inscription
   Route.resource(
     'athlete-inscriptions',
-    'Event/Championship/AthleteInscriptionController'
+    'TTEvent/Championship/AthleteInscriptionController'
   ).apiOnly();
-}).prefix('championships/:championships_id/');
+}).prefix('championships/:championship_id/');
 

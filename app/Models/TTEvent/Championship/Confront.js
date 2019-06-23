@@ -21,11 +21,11 @@ class Confront extends Model {
   }
 
   sets() {
-    return this.hasMany('App/Models/Event/Championship/Set');
+    return this.hasMany('App/Models/TTEvent/Championship/Set');
   }
 
   table() {
-    return this.belongsTo('App/Models/Event/Table');
+    return this.belongsTo('App/Models/TTEvent/Table');
   }
 }
 

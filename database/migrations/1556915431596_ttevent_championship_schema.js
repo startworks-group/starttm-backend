@@ -6,10 +6,10 @@ class ChampionshipSchema extends Schema {
     this.create('championships', (table) => {
       table.increments();
       table
-        .integer('event_id')
+        .integer('tt_event_id')
         .notNullable()
         .unsigned()
-        .references('events.id');
+        .references('ttevents.id');
       table.enu('sex', ['M', 'F']).notNullable();
       table.enu('type', ['RAT', 'RAK']).notNullable();
       table

@@ -6,7 +6,7 @@ const Model = use('Model')
 class Group extends Model {
 
     championship() {
-        return this.belongsTo('App/Models/Event/Championship');
+        return this.belongsTo('App/Models/TTEvent/Championship');
     }
 
     athletes(){

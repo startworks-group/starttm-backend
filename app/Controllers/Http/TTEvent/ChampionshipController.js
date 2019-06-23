@@ -1,7 +1,10 @@
-const { Championship, Event } = use('App/Models');
+const { Championship, TTEvent } = use('App/Models');
 
 class ChampionshipController {
   async index() {
+    
+    //TODO retornar championships apenas para um ttevent
+
     const championships = await Championship.all();
     return championships;
   }
@@ -9,8 +12,8 @@ class ChampionshipController {
   async store({ request, params }) {
     const data = request.only(Championship.columns());
 
-    const event = await Event.findOrFail(params.events_id);
-    const championship = await event.championships().create(data);
+    const TTEvent = await TTEvent.findOrFail(params.TTEvent_id);
+    const championship = await TTEvent.championships().create(data);
 
     return championship;
   }
@@ -40,9 +43,7 @@ class ChampionshipController {
 
     await championship.athleteInscriptions().delete();
 
-    const resp = await championship.delete();
-
-    return resp;
+    return championship.delete();
   }
 }
 

@@ -13,7 +13,7 @@ class Table extends Model {
   }
 
   confronts() {
-    return this.hasMany('App/Models/Event/Championship/Confront');
+    return this.hasMany('App/Models/TTEvent/Championship/Confront');
   }
 }
 
