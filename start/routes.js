@@ -7,28 +7,45 @@ Route
   .post('/subscriptions', 'Auth/SubscriptionController.store')
   .validator('Auth/Subscription/Store');
 
+/**
+ * Users
+ */
+Route.resource('users', 'UserController').apiOnly();
+// People
+Route.resource('users/:user_id/people', 'PersonController').apiOnly();
+
+/**
+ * Auth Sessions
+ */
+Route.resource('sessions', 'Auth/SessionController');
+
+/**
+ * Auth Permissions
+ */
+Route.resource('permissions', 'Auth/Roles/PermissionController')
+  .apiOnly()
+  .middleware('auth');
+
+/**
+ * Auth Roles
+ */
+Route.resource('roles', 'Auth/RoleController')
+  .apiOnly()
+  .middleware('auth');
+
 // Federations
 Route.resource('federations', 'FederationController').apiOnly();
 
 // Clubs
 Route.resource('clubs', 'ClubController').apiOnly();
 
-/**
- * Users
- */
-Route.resource('users', 'UserController').apiOnly();
-Route.group(() => {
-  // People
-  Route.resource('people', 'PersonController').apiOnly();
-
-  // Athletes
-  Route.resource('athletes', 'AthleteController').apiOnly();
-}).prefix('users/:users_id/');
-Route.resource('events', 'EventController').apiOnly();
+// Athletes
+Route.resource('athletes', 'AthleteController').apiOnly();
 
 /**
  * Event
  */
+Route.resource('events', 'EventController').apiOnly();
 Route.group(() => {
   // Table
   Route.resource('tables', 'Event/TableController').apiOnly();
@@ -56,20 +73,3 @@ Route.group(() => {
   ).apiOnly();
 }).prefix('championships/:championships_id/');
 
-/**
- * Auth Sessions
- */
-Route.resource('sessions', 'Auth/SessionController');
-
-/**
- * Auth Permissions
- */
-Route.resource('permissions', 'Auth/Roles/PermissionController')
-  .apiOnly()
-  .middleware('auth');
-/**
- * Auth Roles
- */
-Route.resource('roles', 'Auth/RoleController')
-  .apiOnly()
-  .middleware('auth');
