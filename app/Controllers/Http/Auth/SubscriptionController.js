@@ -4,7 +4,7 @@ const { Subscription } = use('App/Models');
 
 class SubscriptionController {
   async store({ request, response }) {
-    const redirectUrl = request.input('redirectUrl');
+    const redirectUrl = request.input('redirect_url');
     const data = request.only(['username', 'email', 'password']);
 
     const hash = await Hash.make(data.username + data.email + data.password);
