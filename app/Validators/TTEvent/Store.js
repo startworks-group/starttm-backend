@@ -17,7 +17,7 @@ class TTEventStore {
       'entries.*.type': 'required', // TODO definir types
       'entries.*.price': 'required', // TODO pegar valor double ou float
       'championships.*.sex': 'required|in:M,F',
-      'championships.*.type': 'required', // TODO definir types
+      'championships.*.type': 'required', // TODO definir types, unique
       'championships.*.upperLimit': 'required|integer',
       'championships.*.downLimit': 'required|integer',
     }
