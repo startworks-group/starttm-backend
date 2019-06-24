@@ -40,7 +40,9 @@ Route.resource('federations', 'FederationController').apiOnly();
 Route.resource('clubs', 'ClubController').apiOnly();
 
 // Athletes
-Route.resource('athletes', 'AthleteController').apiOnly();
+Route.resource('athletes', 'AthleteController')
+  .apiOnly()
+  .validator(new Map([[['athletes.store'], ['Athlete/Store']]]));;
 
 /**
  * Event
