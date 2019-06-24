@@ -37,7 +37,9 @@ Route.resource('roles', 'Auth/RoleController')
 Route.resource('federations', 'FederationController').apiOnly();
 
 // Clubs
-Route.resource('clubs', 'ClubController').apiOnly();
+Route.resource('clubs', 'ClubController')
+  .apiOnly()
+  .validator(new Map([[['clubs.store'], ['Club/Store']]]));;
 
 // Athletes
 Route.resource('athletes', 'AthleteController')
