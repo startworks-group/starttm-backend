@@ -12,7 +12,9 @@ Route
  */
 Route.resource('users', 'UserController').apiOnly();
 // People
-Route.resource('people', 'PersonController').apiOnly();
+Route.resource('people', 'PersonController')
+  .apiOnly()
+  .validator(new Map([[['people.store'], ['Person/Store']]]));;
 
 /**
  * Auth Sessions
