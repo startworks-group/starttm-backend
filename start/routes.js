@@ -45,7 +45,10 @@ Route.resource('athletes', 'AthleteController').apiOnly();
 /**
  * Event
  */
-Route.resource('ttevents', 'TTEventController').apiOnly();
+Route.resource('ttevents', 'TTEventController')
+  .apiOnly()
+  .validator(new Map([[['ttevents.store'], ['TTEvent/Store']]]));;
+
 Route.group(() => {
   // Table
   Route.resource('tables', 'TTEvent/TableController').apiOnly();
