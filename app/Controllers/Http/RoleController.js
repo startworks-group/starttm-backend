@@ -1,5 +1,5 @@
 'use strict'
-const { User} = use('App/Models')
+const { User } = use('App/Models')
 // TODO verificar se esta funcionando
 const Role = use('Role')
 

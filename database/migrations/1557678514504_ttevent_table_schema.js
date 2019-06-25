@@ -13,14 +13,14 @@ class TableSchema extends Schema {
         .notNullable()
         .unsigned();
       table
-        .integer('event_id')
+        .integer('tt_event_id')
         .notNullable()
         .unsigned()
-        .references('events.id')
+        .references('ttevents.id')
         .onUpdate('cascade')
         .onDelete('cascade');
       table.timestamps();
-      table.unique(['event_id', 'number']);
+      table.unique(['tt_event_id', 'number']);
     });
   }
 

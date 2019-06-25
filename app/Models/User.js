@@ -1,28 +1,27 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
+const { base } = use('App/Utils/ModelsPath');
+
 class User extends Model {
   static boot() {
     super.boot();
   }
 
   tokens() {
-    return this.hasMany('App/Models/Token');
+    return this.hasMany(`${base}/Token`);
   }
 
   person() {
-    return this.hasOne('App/Models/Person');
+    return this.hasOne(`${base}/Person`);
   }
 
   athlete() {
-    return this.hasOne('App/Models/Athlete');
+    return this.hasOne(`${base}/Athlete`);
   }
 
   static get traits() {
-    return [
-      '@provider:Adonis/Acl/HasRole',
-      '@provider:Adonis/Acl/HasPermission',
-    ]
+    return ['@provider:Adonis/Acl/HasRole', '@provider:Adonis/Acl/HasPermission'];
   }
 }
 

@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-const Hash = use('Hash')
+const Hash = use('Hash');
 
-const UserHook = exports = module.exports = {}
+const UserHook = exports = module.exports = {};
 
 UserHook.hashPassword = async (user) => {
-    user.password = Hash.make(user.password)
+  user.password = Hash.make(user.password);
 }

@@ -6,8 +6,8 @@ class Entry extends Model {
     super.boot();
   }
 
-  event() {
-    return this.belongsTo('App/Models/Event');
+  ttevent() {
+    return this.belongsTo('App/Models/TTEvent');
   }
 }
 

@@ -1,27 +1,34 @@
 const { User, Subscription } = use('App/Models');
+const Hash = use('Hash');
 
 class UserController {
-  async index() {
-    const users = await User.all();
-
-    return users;
+  async index({ request }) {
+    return User
+            .query()
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
   async show({ params }) {
-    const user = await User.find(params.id);
+    const user = await User.findOrFail(params.id);
 
-    await user.loadMany(['person', 'athlete']);
+    await user.loadMany(['person', 'athlete', 'roles', 'permissions']);
 
     return user;
   }
 
   async store({ request }) {
-    const token = request.input('subscriptionToken');
+    const subscriptionToken = request.input('subscriptionToken');
 
-    const subscription = await Subscription.findByOrFail('token', token);
-
-    const { email, username, password } = subscription;    
-    const user = await User.create({ email, username, password });
+    const subscription = await Subscription.findByOrFail('token', subscriptionToken);
+    const { permissions, roles, token, password, username, email } = subscription;
+    const hashPass = await Hash.make(password);
+    const user = await User.create({ username, email, password: hashPass });
+    
+    if (roles) await user.roles().attach(roles);
+    if (permissions) await user.permissions().attach(permissions);
 
     subscription.delete();
 

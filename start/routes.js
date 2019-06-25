@@ -3,51 +3,87 @@ const Route = use('Route');
 Route.get('/', () => ({ starttm: 'Bem vindo ao sistema Start TM' }));
 
 // Subscriptions
-Route.post('/subscriptions', 'Auth/SubscriptionController.store');
-
-// Federations
-Route.resource('federations', 'FederationController').apiOnly();
-
-// Clubs
-Route.resource('clubs', 'ClubController').apiOnly();
+Route
+  .post('/subscriptions', 'Auth/SubscriptionController.store')
+  .validator('Auth/Subscription/Store');
 
 /**
  * Users
  */
 Route.resource('users', 'UserController').apiOnly();
-Route.group(() => {
-  // People
-  Route.resource('people', 'PersonController').apiOnly();
+// People
+Route.resource('people', 'PersonController')
+  .apiOnly()
+  .validator(new Map([[['people.store'], ['Person/Store']]]));
 
-  // Athletes
-  Route.resource('athletes', 'AthleteController').apiOnly();
-}).prefix('users/:users_id/');
+/**
+ * Auth Sessions
+ */
+Route.resource('sessions', 'Auth/SessionController');
+
+/**
+ * Auth Permissions
+ */
+Route.resource('permissions', 'Auth/Roles/PermissionController')
+  .apiOnly()
+  .middleware('auth');
+
+/**
+ * Auth Roles
+ */
+Route.resource('roles', 'Auth/RoleController')
+  .apiOnly()
+  .middleware('auth');
+
+// Federations
+Route.resource('federations', 'FederationController')
+  .apiOnly()
+  .validator(new Map([[['federations.store'], ['Federation/Store']]]));
+
+
+// Clubs
+Route.resource('clubs', 'ClubController')
+  .apiOnly()
+  .validator(new Map([[['clubs.store'], ['Club/Store']]]));
+
+// Athletes
+Route.resource('athletes', 'AthleteController')
+  .apiOnly()
+  .validator(new Map([[['athletes.store'], ['Athlete/Store']]]));
 
 /**
  * Event
  */
-Route.resource('events', 'EventController').apiOnly();
+Route.resource('ttevents', 'TTEventController')
+  .apiOnly()
+  .validator(new Map([[['ttevents.store'], ['TTEvent/Store']]]));
+
 Route.group(() => {
   // Table
-  Route.resource('tables', 'Event/TableController').apiOnly();
+  Route.resource('tables', 'TTEvent/TableController').apiOnly();
 
   // Championship
-  Route.resource('championships', 'Event/ChampionshipController').apiOnly();
-}).prefix('events/:events_id/');
+  Route.resource('championships', 'TTEvent/ChampionshipController').apiOnly();
+})
+  .prefix('ttevents/:ttevent_id/')
+  .middleware(['auth', 'is:(federation)']);
 
 /**
  * Championship
  */
 Route.group(() => {
   // Confront
-  Route.resource('confronts', 'Event/Championship/ConfrontController').apiOnly();
+  Route.resource(
+    'confronts',
+    'TTEvent/Championship/ConfrontController',
+  ).apiOnly();
 
   // Athlete Inscription
   Route.resource(
     'athlete-inscriptions',
-    'Event/Championship/AthleteInscriptionController',
+    'TTEvent/Championship/AthleteInscriptionController',
   ).apiOnly();
 
   // Group
   Route.resource('groups', 'Event/Championship/GroupController').apiOnly();
-}).prefix('championships/:championships_id/');
+}).prefix('championships/:championship_id/');

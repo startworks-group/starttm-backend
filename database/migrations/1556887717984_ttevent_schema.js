@@ -1,10 +1,10 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
-const eventTypes = require('../data/event/types');
+const eventTypes = require('../data/ttevent/types');
 
-class EventSchema extends Schema {
+class TTEventSchema extends Schema {
   up() {
-    this.create('events', (table) => {
+    this.create('ttevents', (table) => {
       table.increments();
       table.integer('owner_id').notNullable();
       table.enu('type', eventTypes).notNullable();
@@ -22,8 +22,8 @@ class EventSchema extends Schema {
   }
 
   down() {
-    this.drop('events');
+    this.drop('ttevents');
   }
 }
 
-module.exports = EventSchema;
+module.exports = TTEventSchema;

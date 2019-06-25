@@ -1,9 +1,13 @@
 const { Federation, User } = use('App/Models');
 
 class FederationController {
-  async index() {
-    const federations = await Federation.all();
-    return federations;
+  async index({ request }) {
+    return Federation
+            .query()
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
   async store({ request }) {
@@ -14,9 +18,7 @@ class FederationController {
   }
 
   async show({ params }) {
-    const federation = await Federation.findOrFail(params.id);
-
-    return federation;
+    return Federation.findOrFail(params.id);
   }
 
   async update({ params, request }) {

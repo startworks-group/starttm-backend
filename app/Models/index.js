@@ -1,6 +1,6 @@
 'use strict';
 
-const { base, event, championship } = use('App/Utils/ModelsPath');
+const { base, ttevent, championship } = use('App/Utils/ModelsPath');
 
 const Subscription = use(`${base}/Auth/Subscription`);
 const User = use(`${base}/User`);
@@ -13,9 +13,10 @@ const Athlete = use(`${base}/Athlete`);
 /**
  * Event
  */
-const Event = use(`${event}`);
-const Entry = use(`${event}/Entry`);
-const Table = use(`${event}/Table`);
+
+const TTEvent = use(`${ttevent}`);
+const Entry = use(`${ttevent}/Entry`);
+const Table = use(`${ttevent}/Table`);
 
 /**
  * Championship
@@ -34,7 +35,8 @@ module.exports = {
   Federation,
   Athlete,
 
-  Event,
+  TTEvent,
+
   Entry,
   Table,
 

@@ -2,15 +2,21 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
-const { event, championship } = use('App/Utils/ModelsPath');
+const { championship } = use('App/Utils/ModelsPath');
 
 class Group extends Model {
   championship() {
-    return this.belongsTo(`${event}/Championship`);
+    return this.belongsTo(`${championship}`);
   }
 
   athletesInscriptions() {
     return this.hasMany(`${championship}/AthleteInscription`);
+  }
+
+  athletes() {
+    return this
+      .belongsToMany('App/Models/Athlete')
+      .pivotTable('groups_athletes');
   }
 }
 

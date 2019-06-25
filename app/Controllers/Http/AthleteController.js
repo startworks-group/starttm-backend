@@ -1,16 +1,19 @@
 const { Athlete, User } = use('App/Models');
 
 class AthleteController {
-  async index() {
-    const athletes = await Athlete.all();
-    return athletes;
+  async index({ request }) {
+    return Athlete
+            .query()
+            .paginate(
+              request.input('page', 1),
+              request.input('perPage', 10)
+            );
   }
 
   async show({ params }) {
     const athlete = await Athlete.findOrFail(params.id);
 
     await athlete.loadMany(['federation', 'championshipInscriptions']);
-    await athlete.load('user.person');
 
     return athlete;
   }
@@ -18,11 +21,9 @@ class AthleteController {
   async store({ request, params }) {
     const data = request.only(Athlete.columns());
 
-    const user = await User.findOrFail(params.users_id);
-
-    const athlete = await user.athlete().create(data);
-
-    return athlete;
+    // TODO quando o atleta for criado para um usuário
+    // o usuário deve ganhar o "role" de "[Athlete]"
+    return Athlete.create(data);
   }
 
   async update({ params, request }) {
@@ -40,9 +41,10 @@ class AthleteController {
   async destroy({ params }) {
     const athlete = await Athlete.findOrFail(params.id);
 
-    const resp = await athlete.delete();
+    // TODO quando o atleta for deletado para um usuário
+    // o usuário deve perder o "role" de "[Athlete]"
 
-    return resp;
+    return athlete.delete();
   }
 }
 

@@ -11,7 +11,7 @@ class AthleteInscriptionController {
   async store({ request, params }) {
     const data = await request.only(AthleteInscription.columns());
 
-    const championship = await Championship.findOrFail(params.championships_id);
+    const championship = await Championship.findOrFail(params.championship_id);
 
     const inscription = await championship.athleteInscriptions().create(data);
 

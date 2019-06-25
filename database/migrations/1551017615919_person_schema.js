@@ -10,6 +10,7 @@ class PersonSchema extends Schema {
         .unsigned()
         .references('users.id')
         .notNullable()
+        .unique()
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table
@@ -17,8 +18,8 @@ class PersonSchema extends Schema {
         .unsigned()
         .references('addresses.id')
         .notNullable()
-        .onUpdate('cascade')
-        .onDelete('cascade');
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.string('name').notNullable();
       table.enu('sex', ['MALE', 'FEMALE']).notNullable();
       table.date('birth').notNullable();

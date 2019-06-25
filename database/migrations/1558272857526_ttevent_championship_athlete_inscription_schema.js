@@ -13,10 +13,6 @@ class AthleteInscriptionSchema extends Schema {
         .unsigned()
         .references('athletes.id');
       table
-        .integer('group_id')
-        .unsigned()
-        .references('groups.id');
-      table
         .integer('championship_id')
         .notNullable()
         .unsigned()
