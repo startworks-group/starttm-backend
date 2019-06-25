@@ -11,6 +11,7 @@ Route
  * Users
  */
 Route.resource('users', 'UserController').apiOnly();
+<<<<<<< HEAD
 // People
 Route.resource('people', 'PersonController')
   .apiOnly()
@@ -40,6 +41,11 @@ Route.resource('federations', 'FederationController')
   .apiOnly()
   .validator(new Map([[['federations.store'], ['Federation/Store']]]));
 
+=======
+Route.group(() => {
+  // People
+  Route.resource('people', 'PersonController').apiOnly();
+>>>>>>> 9b0193097d84994124a6440fb9d61b5bd4323f9c
 
 // Clubs
 Route.resource('clubs', 'ClubController')
@@ -84,6 +90,21 @@ Route.group(() => {
     'TTEvent/Championship/AthleteInscriptionController',
   ).apiOnly();
 
+<<<<<<< HEAD
   // Group
   Route.resource('groups', 'Event/Championship/GroupController').apiOnly();
 }).prefix('championships/:championship_id/');
+=======
+/**
+ * Auth Permissions
+ */
+Route.resource('permissions', 'Auth/Roles/PermissionController')
+  .apiOnly()
+  .middleware('auth');
+/**
+ * Auth Roles
+ */
+Route.resource('roles', 'Auth/RoleController')
+  .apiOnly()
+  .middleware('auth');
+>>>>>>> 9b0193097d84994124a6440fb9d61b5bd4323f9c
