@@ -20,7 +20,7 @@ const providers = [
   '@adonisjs/framework/providers/ViewProvider',
   'adonis-acl/providers/AclProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
-  '@adonisjs/antl/providers/AntlProvider'
+  '@adonisjs/antl/providers/AntlProvider',
 ];
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +63,9 @@ const aliases = {
 */
 const commands = [];
 
-module.exports = {providers, aceProviders, aliases, commands};
+module.exports = {
+  providers,
+  aceProviders,
+  aliases,
+  commands,
+};

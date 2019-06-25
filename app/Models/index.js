@@ -13,6 +13,7 @@ const Athlete = use(`${base}/Athlete`);
 /**
  * Event
  */
+
 const TTEvent = use(`${ttevent}`);
 const Entry = use(`${ttevent}/Entry`);
 const Table = use(`${ttevent}/Table`);
@@ -23,6 +24,7 @@ const Table = use(`${ttevent}/Table`);
 const Championship = use(`${championship}`);
 const Confront = use(`${championship}/Confront`);
 const AthleteInscription = use(`${championship}/AthleteInscription`);
+const Group = use(`${championship}/Group`);
 
 module.exports = {
   User,
@@ -34,10 +36,12 @@ module.exports = {
   Athlete,
 
   TTEvent,
+
   Entry,
   Table,
 
   Championship,
   AthleteInscription,
   Confront,
+  Group,
 };

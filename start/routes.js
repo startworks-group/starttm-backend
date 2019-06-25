@@ -11,10 +11,11 @@ Route
  * Users
  */
 Route.resource('users', 'UserController').apiOnly();
+
 // People
 Route.resource('people', 'PersonController')
   .apiOnly()
-  .validator(new Map([[['people.store'], ['Person/Store']]]));;
+  .validator(new Map([[['people.store'], ['Person/Store']]]));
 
 /**
  * Auth Sessions
@@ -38,25 +39,24 @@ Route.resource('roles', 'Auth/RoleController')
 // Federations
 Route.resource('federations', 'FederationController')
   .apiOnly()
-  .validator(new Map([[['federations.store'], ['Federation/Store']]]));;
-
+  .validator(new Map([[['federations.store'], ['Federation/Store']]]));
 
 // Clubs
 Route.resource('clubs', 'ClubController')
   .apiOnly()
-  .validator(new Map([[['clubs.store'], ['Club/Store']]]));;
+  .validator(new Map([[['clubs.store'], ['Club/Store']]]));
 
 // Athletes
 Route.resource('athletes', 'AthleteController')
   .apiOnly()
-  .validator(new Map([[['athletes.store'], ['Athlete/Store']]]));;
+  .validator(new Map([[['athletes.store'], ['Athlete/Store']]]));
 
 /**
- * Event
+ * TTEvent
  */
 Route.resource('ttevents', 'TTEventController')
   .apiOnly()
-  .validator(new Map([[['ttevents.store'], ['TTEvent/Store']]]));;
+  .validator(new Map([[['ttevents.store'], ['TTEvent/Store']]]));
 
 Route.group(() => {
   // Table
@@ -75,13 +75,15 @@ Route.group(() => {
   // Confront
   Route.resource(
     'confronts',
-    'TTEvent/Championship/ConfrontController'
+    'TTEvent/Championship/ConfrontController',
   ).apiOnly();
 
   // Athlete Inscription
   Route.resource(
     'athlete-inscriptions',
-    'TTEvent/Championship/AthleteInscriptionController'
+    'TTEvent/Championship/AthleteInscriptionController',
   ).apiOnly();
-}).prefix('championships/:championship_id/');
 
+  // Group
+  Route.resource('groups', 'TTEvent/Championship/GroupController').apiOnly();
+}).prefix('championships/:championship_id/');

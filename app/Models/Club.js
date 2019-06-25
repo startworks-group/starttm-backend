@@ -1,6 +1,8 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
+const { base } = use('App/Utils/ModelsPath');
+
 class Club extends Model {
   static boot() {
     super.boot();
@@ -11,11 +13,11 @@ class Club extends Model {
   }
 
   federation() {
-    return this.belongsTo('App/Models/Federation');
+    return this.belongsTo(`${base}/Federation`);
   }
 
   address() {
-    return this.belongsTo('App/Models/Address');
+    return this.belongsTo(`${base}/Address`);
   }
 }
 

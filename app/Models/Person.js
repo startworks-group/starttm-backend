@@ -1,6 +1,8 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
+const { base } = use('App/Utils/ModelsPath');
+
 class Person extends Model {
   static boot() {
     super.boot();
@@ -15,11 +17,11 @@ class Person extends Model {
   }
 
   user() {
-    return this.belongsTo('App/Models/User');
+    return this.belongsTo(`${base}/User`);
   }
 
   address() {
-    return this.belongsTo('App/Models/Address');
+    return this.belongsTo(`${base}/Address`);
   }
 }
 

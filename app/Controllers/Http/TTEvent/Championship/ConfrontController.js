@@ -3,7 +3,7 @@
 const { Confront, Championship } = use('App/Models');
 
 class ConfrontController {
-  async index({ params }) {
+  async index() {
     // TODO retornar confronts apenas de um championship or ttevent
     const confronts = await Confront.all();
 
@@ -11,7 +11,7 @@ class ConfrontController {
   }
 
   async store({ request, params }) {
-    const { championships_id } = params;
+    const { championship_id } = params;
     const data = request.only(Confront.columns());
 
     const championship = await Championship.findOrFail(championship_id);

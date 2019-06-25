@@ -1,6 +1,8 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
 
+const { base, championship } = use('App/Utils/ModelsPath');
+
 class Athlete extends Model {
   static boot() {
     super.boot();
@@ -11,15 +13,15 @@ class Athlete extends Model {
   }
 
   championshipInscriptions() {
-    return this.hasMany('App/Models/TTEvent/Championship/AthleteInscription');
+    return this.hasMany(`${championship}/AthleteInscription`);
   }
 
   user() {
-    return this.belongsTo('App/Models/User');
+    return this.belongsTo(`${base}/User`);
   }
 
   federation() {
-    return this.belongsTo('App/Models/Federation');
+    return this.belongsTo(`${base}/Federation`);
   }
 }
 

@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
-const Schema = use('Schema')
+const Schema = use('Schema');
 
 class GroupsAthletesSchema extends Schema {
-  up () {
+  up() {
     this.create('groups_athletes', (table) => {
       table.increments();
       table
@@ -17,13 +17,13 @@ class GroupsAthletesSchema extends Schema {
         .notNullable()
         .unsigned()
         .references('groups.id');
-      table.timestamps()
-    })
+      table.timestamps();
+    });
   }
 
-  down () {
-    this.drop('groups_athletes')
+  down() {
+    this.drop('groups_athletes');
   }
 }
 
-module.exports = GroupsAthletesSchema
+module.exports = GroupsAthletesSchema;

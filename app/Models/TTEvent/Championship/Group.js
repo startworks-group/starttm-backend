@@ -1,19 +1,23 @@
-'use strict'
+'use strict';
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('Model');
+const { championship } = use('App/Utils/ModelsPath');
 
 class Group extends Model {
+  championship() {
+    return this.belongsTo(`${championship}`);
+  }
 
-    championship() {
-        return this.belongsTo('App/Models/TTEvent/Championship');
-    }
+  athletesInscriptions() {
+    return this.hasMany(`${championship}/AthleteInscription`);
+  }
 
-    athletes(){
-        return this
-            .belongsToMany('App/Models/Athlete')
-            .pivotTable('groups_athletes');
-    }
+  athletes() {
+    return this
+      .belongsToMany('App/Models/Athlete')
+      .pivotTable('groups_athletes');
+  }
 }
 
-module.exports = Group
+module.exports = Group;
